@@ -1,9 +1,4 @@
-/* File: Author.java
- * Author: Stanley Pieda
- * Date: 2015
- * Modified: May/2022 changed Author to Author - kriger
- * Description: Demonstration of DAO Design Pattern
- */
+
 package model;
 
 public class Author {
