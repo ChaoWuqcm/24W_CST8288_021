@@ -6,7 +6,7 @@ package model;
 
 /**
  *
- * @author Chao
+ * @author Dunxing Yu
  */
 public class Consumer implements UserInterface{
     private String userName;

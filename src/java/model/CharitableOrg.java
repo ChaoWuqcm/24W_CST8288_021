@@ -6,7 +6,7 @@ package model;
 
 /**
  *
- * @author ydx22
+ * @author Dunxing Yu
  */
 public class CharitableOrg implements UserInterface{
     private String userName;

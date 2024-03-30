@@ -6,7 +6,7 @@ package model;
 
 /**
  *
- * @author yehui
+ * @author Dunxing Yu
  */
 public interface UserInterface {
     void performAction();

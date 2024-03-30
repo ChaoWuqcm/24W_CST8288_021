@@ -1,5 +1,3 @@
-/* for FWRP by Dunxing Yu  */
-
 DROP DATABASE IF EXISTS FWRP;
 CREATE DATABASE FWRP;
 use FWRP;
@@ -34,6 +32,7 @@ CREATE TABLE UserSubscription
 usID int NOT NULL AUTO_INCREMENT PRIMARY KEY,
 userID int NOT NULL,
 productType varchar(30) NOT NULL,
+userCity varchar(30) NOT NULL,
 FOREIGN KEY (userID) References Users(userID)
 );
 CREATE VIEW Donation_view AS
@@ -68,12 +67,12 @@ VALUES
     ('Product9', 17.25, 130, 'B', 'Y', 1, '2024-05-15'),
     ('Product10', 11.49, 110, 'C', 'N', 2, '2024-07-01');
     
-INSERT INTO UserSubscription (userID, productType)
+INSERT INTO UserSubscription (userID, productType,userCity)
 VALUES
-    (1, 'A'),
-    (2, 'B'),
-    (3, 'C'),
-    (4, 'A');
+    (6, 'A','ottawa'),
+    (7, 'B','Toronto'),
+    (6, 'C','ottawa'),
+    (7, 'A','Toronto');
 select * from Products;
 select * from users;
 select * from Donation_view;
@@ -81,6 +80,3 @@ select * from Discount_view;
 update products set donationAmount =150.0  where productID = 6;
 select * from usersubscription;
 
-
-
-                                            ;
