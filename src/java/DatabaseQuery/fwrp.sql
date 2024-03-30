@@ -10,7 +10,7 @@ CREATE TABLE Users
    userEmail varchar(30) NOT NULL,
    userPassword varchar(30) NOT NULL,
    userCity varchar(30) NOT NULL,
-   userType int NOT NULL
+   userType varchar(30) NOT NULL
   
 );
 CREATE TABLE Products
@@ -47,13 +47,13 @@ FROM Products as p join users as u on p.userID = u.userID
 WHERE discountAmount IS NOT NULL AND discountAmount <> 0;
 
 
-INSERT INTO users (userName,userEmail,userPassword,userCity,userType) VALUES ('admin','admin@admin.com','admin','ottawa',0);
-INSERT INTO users (userName,userEmail,userPassword,userCity,userType) VALUES ('Walmart','Walmart@Walmart.com','walmart','Toronto',1);
-INSERT INTO users (userName,userEmail,userPassword,userCity,userType) VALUES ('loblaws','loblaws@loblaws.com','loblaws','ottawa',1);
-INSERT INTO users (userName,userEmail,userPassword,userCity,userType) VALUES ('foodbanks','foodbanks@foodbanks.com','foodbanks','ottawa',2);
-INSERT INTO users (userName,userEmail,userPassword,userCity,userType) VALUES ('foodMissions','foodMissions@foodMissions.com','foodMissions','ottawa',2);
-INSERT INTO users (userName,userEmail,userPassword,userCity,userType) VALUES ('Tom','toms@gmail.com','toms','ottawa',3);
-INSERT INTO users (userName,userEmail,userPassword,userCity,userType) VALUES ('Mike','mike@gmail.com','mike','Toronto',3);
+INSERT INTO users (userName,userEmail,userPassword,userCity,userType) VALUES ('admin','admin@admin.com','admin','ottawa','admin');
+INSERT INTO users (userName,userEmail,userPassword,userCity,userType) VALUES ('Walmart','Walmart@Walmart.com','walmart','Toronto',"retailer");
+INSERT INTO users (userName,userEmail,userPassword,userCity,userType) VALUES ('loblaws','loblaws@loblaws.com','loblaws','ottawa',"retailer");
+INSERT INTO users (userName,userEmail,userPassword,userCity,userType) VALUES ('foodbanks','foodbanks@foodbanks.com','foodbanks','ottawa',"charitable organization");
+INSERT INTO users (userName,userEmail,userPassword,userCity,userType) VALUES ('foodMissions','foodMissions@foodMissions.com','foodMissions','ottawa',"charitable organization");
+INSERT INTO users (userName,userEmail,userPassword,userCity,userType) VALUES ('Tom','toms@gmail.com','toms','ottawa',"consumer");
+INSERT INTO users (userName,userEmail,userPassword,userCity,userType) VALUES ('Mike','mike@gmail.com','mike','Toronto',"consumer");
 
 INSERT INTO Products (productName, salePrice, inventoryAmount, productType, surplusFlage, userID, expiryDate)
 VALUES
