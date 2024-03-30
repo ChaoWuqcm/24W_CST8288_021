@@ -42,6 +42,7 @@ public class CharitableOrg implements UserInterface{
 
     @Override
     public String getUserType() {
+        int a=0;
         return userType;
     }
 }
