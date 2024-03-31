@@ -4,15 +4,16 @@
  */
 package model;
 import java.util.Date;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+//import java.time.LocalDate;
+//import java.time.LocalTime;
+//import java.time.LocalDateTime;
+//import java.time.format.DateTimeFormatter;
 /**
  *
  * @author Dunxing Yu
  */
 public class Products {
+   private int productID;
    private String productName;
    private double salePrice;
    private double discountPrice;
@@ -20,13 +21,15 @@ public class Products {
    private double discountAmount;
    private double donationAmount;
    private String productType;
-   private char surplusFlage;
+   private String surplusFlage;
    private int userID;
    private Date expiryDate;
    
+   public Products(){}
+   
    public Products(String productName, double salePrice, double discountPrice, 
                     double inventoryAmount, double discountAmount, double donationAmount, 
-                    String productType, char surplusFlage, int userID, Date expiryDate) {
+                    String productType, String surplusFlage, int userID, Date expiryDate) {
         this.productName = productName;
         this.salePrice = salePrice;
         this.discountPrice = discountPrice;
@@ -67,7 +70,7 @@ public class Products {
         return productType;
     }
 
-    public char getSurplusFlage() {
+    public String getSurplusFlage() {
         return surplusFlage;
     }
 
@@ -77,6 +80,54 @@ public class Products {
 
     public Date getExpiryDate() {
         return expiryDate;
+    }
+
+    public int getProductID() {
+        return productID;
+    }
+
+    public void setProductID(int productID) {
+        this.productID = productID;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
+
+    public void setSalePrice(double salePrice) {
+        this.salePrice = salePrice;
+    }
+
+    public void setDiscountPrice(double discountPrice) {
+        this.discountPrice = discountPrice;
+    }
+
+    public void setInventoryAmount(double inventoryAmount) {
+        this.inventoryAmount = inventoryAmount;
+    }
+
+    public void setDiscountAmount(double discountAmount) {
+        this.discountAmount = discountAmount;
+    }
+
+    public void setDonationAmount(double donationAmount) {
+        this.donationAmount = donationAmount;
+    }
+
+    public void setProductType(String productType) {
+        this.productType = productType;
+    }
+
+    public void setSurplusFlage(String surplusFlage) {
+        this.surplusFlage = surplusFlage;
+    }
+
+    public void setUserID(int userID) {
+        this.userID = userID;
+    }
+
+    public void setExpiryDate(Date expiryDate) {
+        this.expiryDate = expiryDate;
     }
     
 }
