@@ -36,15 +36,15 @@
 </div>
 <script>
     // get the form and input
-    var form = document.querySelector('form');
-    var userName = document.querySelector('#userName');
-    var password = document.querySelector('#password');
+    const form = document.querySelector('form');
+    const email = document.querySelector('#email');
+    const password = document.querySelector('#password');
 
     // add event listener，check if the input is empty
     form.addEventListener('submit', function(event) {
         event.preventDefault(); // prevent default behavior
 
-        if (userName.value === '') {
+        if (email.value === '') {
             alert('Email cannot be empty！');
         }else if(password.value === '') {
             alert('Password cannot be empty！');
