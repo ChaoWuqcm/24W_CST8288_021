@@ -10,7 +10,6 @@ import java.sql.PreparedStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import model.Author;
 import model.Products;
 
 /**
@@ -31,7 +30,7 @@ public class ProductsDaoImpl {
             con = ds.createConnection();
             pstmt = con.prepareStatement(
                     "SELECT * form products where userID = ? ORDER BY productID");
-             pstmt.setInt(6, userID);
+             pstmt.setInt(1, userID);
             rs = pstmt.executeQuery();
             products = new ArrayList<Products>();
             while (rs.next()) {
