@@ -12,6 +12,7 @@ public class User {
     private int userID;
     private String userName;
     private String userEmail;
+    private String userPhoneNumber;
     private String userPassword;
     private String userType;
     private String userCity;
@@ -20,16 +21,13 @@ public class User {
         
     }
     
-    public User(String userName, String userEmail, String userPassword, String userCity, String userType) {
+    public User(String userName, String userEmail, String userPhoneNumber, String userPassword, String userCity, String userType) {
         this.userName = userName;
         this.userEmail = userEmail;
+        this.userPhoneNumber = userPhoneNumber;
         this.userPassword = userPassword;
         this.userType = userType;
         this.userCity = userCity;
-    }
-    
-    public void performAction() {
-        
     }
 
     public int getUserID() {
@@ -43,7 +41,11 @@ public class User {
     public String getUserEmail() {
         return userEmail;
     }
-
+    
+    public String getUserPhoneNumber(){
+        return userPhoneNumber;
+    }
+            
     public String getUserPassword() {
         return userPassword;
     }
@@ -68,6 +70,9 @@ public class User {
         this.userEmail = userEmail;
     }
 
+    public void setUserPhoneNumber(String userPhoneNumber){
+        this.userPhoneNumber = userPhoneNumber;
+    }
     public void setUserPassword(String userPassword) {
         this.userPassword = userPassword;
     }

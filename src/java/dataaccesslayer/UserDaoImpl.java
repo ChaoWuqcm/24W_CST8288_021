@@ -15,15 +15,67 @@ import java.sql.PreparedStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import model.Author;
 import model.User;
 
 public class UserDaoImpl {
 
     public UserDaoImpl() {
     }
+    
+      public List<User> getAllUesrs() throws SQLException {
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        ArrayList<User> users = null;
+        try {
+            DataSource ds = new DataSource();
+            con = ds.createConnection();
+            pstmt = con.prepareStatement(
+                    "SELECT * FROM Users ORDER BY userID");
+            rs = pstmt.executeQuery();
+            users = new ArrayList<User>();
+            while (rs.next()) {
+                User user = new User();
+                user.setUserID(rs.getInt("userID"));
+                user.setUserName(rs.getString("userName"));
+                user.setUserEmail(rs.getString("userEmail"));
+                user.setUserPhoneNumber(rs.getString("userPhoneNumber"));
+                user.setUserPassword(rs.getString("userPassword"));
+                user.setUserCity(rs.getString("userCity"));
+                user.setUserType(rs.getString("userType"));
+                users.add(user);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw e;
 
-    public List<User> getAllUesrs(String userType) throws SQLException {
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+            }
+            try {
+                if (pstmt != null) {
+                    pstmt.close();
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+            }
+            try {
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+            }
+        }
+        return users;
+    }
+      
+    public List<User> getAllUesrsByUT(String userType) throws SQLException {
         Connection con = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -41,6 +93,7 @@ public class UserDaoImpl {
                 user.setUserID(rs.getInt("userID"));
                 user.setUserName(rs.getString("userName"));
                 user.setUserEmail(rs.getString("userEmail"));
+                user.setUserPhoneNumber(rs.getString("userPhoneNumber"));
                 user.setUserPassword(rs.getString("userPassword"));
                 user.setUserCity(rs.getString("userCity"));
                 user.setUserType(rs.getString("userType"));
@@ -76,7 +129,7 @@ public class UserDaoImpl {
         return users;
     }
 
-    public int getUesr(String userName) throws SQLException {
+    public int getUesrID(String userEmail) throws SQLException {
         Connection con = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -85,8 +138,8 @@ public class UserDaoImpl {
             DataSource ds = new DataSource();
             con = ds.createConnection();
             pstmt = con.prepareStatement(
-                    "SELECT * FROM Users where userName = ?");
-            pstmt.setString(1, userName);
+                    "SELECT * FROM Users where userEmail = ?");
+            pstmt.setString(1, userEmail);
             rs = pstmt.executeQuery();
             while (rs.next()) {
                 userIDGet=rs.getInt("userID");
@@ -121,6 +174,57 @@ public class UserDaoImpl {
         return userIDGet;
     }
     
+   public User getUesr(String userEmail) throws SQLException {
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        User user = new User();
+        try {
+            DataSource ds = new DataSource();
+            con = ds.createConnection();
+            pstmt = con.prepareStatement(
+                    "SELECT * FROM Users where userEmail = ?");
+            pstmt.setString(1, userEmail);
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+                user.setUserID(rs.getInt("userID"));
+                user.setUserName(rs.getString("userName"));
+                user.setUserEmail(rs.getString("userEmail"));
+                user.setUserPhoneNumber(rs.getString("userPhoneNumber"));
+                user.setUserPassword(rs.getString("userPassword"));
+                user.setUserCity(rs.getString("userCity"));
+                user.setUserType(rs.getString("userType"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw e;
+
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+            }
+            try {
+                if (pstmt != null) {
+                    pstmt.close();
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+            }
+            try {
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+            }
+        }
+        return user;
+    } 
+    
     public void addUser(User user) {
         Connection con = null;
         PreparedStatement pstmt = null;
@@ -128,12 +232,14 @@ public class UserDaoImpl {
             DataSource ds = new DataSource();
             con = ds.createConnection();
             // do not insert userID, it is generated by Database
-            pstmt = con.prepareStatement("INSERT INTO Users (userName, userEmail, userPassword, userCity, userType) VALUES(?, ?, ?, ?, ?)");
+            pstmt = con.prepareStatement("INSERT INTO Users (userName, userEmail, userPhoneNumber, userPassword, userCity, userType) "
+                    + "VALUES(?, ?, ?, ?, ?, ?)");
             pstmt.setString(1, user.getUserName());
             pstmt.setString(2, user.getUserEmail());
-            pstmt.setString(3, user.getUserPassword());
-            pstmt.setString(4, user.getUserCity());
-            pstmt.setString(5, user.getUserType());
+            pstmt.setString(3, user.getUserPhoneNumber());
+            pstmt.setString(4, user.getUserPassword());
+            pstmt.setString(5, user.getUserCity());
+            pstmt.setString(6, user.getUserType());
             pstmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -161,13 +267,14 @@ public class UserDaoImpl {
         try {
             DataSource ds = new DataSource();
             con = ds.createConnection();        
-            pstmt = con.prepareStatement("Update Users set userName = ?, userEmail = ?, userPassword = ?, userCity = ? where userID = ?");
+            pstmt = con.prepareStatement("Update Users set userName = ?, userPhoneNumber = ?, "
+                    + "userPassword = ?, userCity = ? userType = ? where userEmail = ?");
             pstmt.setString(1, user.getUserName());
-            pstmt.setString(2, user.getUserEmail());
+            pstmt.setString(2, user.getUserPhoneNumber());
             pstmt.setString(3, user.getUserPassword());
             pstmt.setString(4, user.getUserCity());
-            pstmt.setInt(5, user.getUserID());
-
+            pstmt.setString(5, user.getUserType());
+            pstmt.setString(6, user.getUserEmail());
             pstmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -195,8 +302,8 @@ public class UserDaoImpl {
         try {
             DataSource ds = new DataSource();
             con = ds.createConnection();
-            pstmt = con.prepareStatement("Delete form Users where userID = ?" );             
-            pstmt.setInt(1, user.getUserID());
+            pstmt = con.prepareStatement("Delete form Users where userEmail = ?" );             
+            pstmt.setString(1, user.getUserEmail());
             pstmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
