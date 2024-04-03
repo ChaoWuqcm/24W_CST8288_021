@@ -76,6 +76,11 @@ public class DiscountView {
         this.dicountCompany = dicountCompany;
     }
 
+    @Override
+    public String toString() {
+        return "DiscountView{" + "userID=" + userID + ", productID=" + productID + ", productName=" + productName + ", discountAmount=" + discountAmount + ", discountPrice=" + discountPrice + ", dicountCompany=" + dicountCompany + '}';
+    }
+
     
    
 }

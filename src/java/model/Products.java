@@ -129,5 +129,22 @@ public class Products {
     public void setExpiryDate(Date expiryDate) {
         this.expiryDate = expiryDate;
     }
+   @Override
+    public String toString() {
+        return "Product{" +
+                "productID=" + productID +
+                ", productName='" + productName + '\'' +
+                ", salePrice='" + salePrice + '\'' +
+                ", discountPrice='" + discountPrice + '\'' +
+                ", inventoryAmount='" + inventoryAmount + '\'' +
+                ", discountAmount='" + discountAmount + '\'' +
+                ", donationAmount='" + donationAmount + '\'' +  
+                ", productType='" + productType + '\'' +
+                ", surplusFlage='" + surplusFlage + '\'' +
+                ", userID='" + userID + '\'' +            
+                ", expiryDate=" + expiryDate +                
+                '}';
+        
+    }
     
 }

@@ -65,5 +65,10 @@ public class DonationView {
     public void setDonationCompany(String DonationCompany) {
         this.DonationCompany = DonationCompany;
     }
+
+    @Override
+    public String toString() {
+        return "DonationView{" + "userID=" + userID + ", productID=" + productID + ", productName=" + productName + ", donationAmount=" + donationAmount + ", DonationCompany=" + DonationCompany + '}';
+    }
     
 }

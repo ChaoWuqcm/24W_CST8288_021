@@ -24,16 +24,16 @@ public class DonationViewDaoImpl {
             DataSource ds = new DataSource();
             con = ds.createConnection();
             pstmt = con.prepareStatement(
-                    "SELECT * form DiscountView ORDER BY productID");
+                    "SELECT * from DonationView ORDER BY productID");
            
             rs = pstmt.executeQuery();
             donations = new ArrayList<DonationView>();
             while (rs.next()) {
                 DonationView product = new DonationView();                
                 product.setProductID(rs.getInt("productID"));
-                product.setProductName(rs.getNString("productName"));
+                product.setProductName(rs.getString("productName"));
                 product.setDonationAmount(rs.getDouble("donationAmount"));
-                product.setUserID(rs.getInt("p.userID"));
+                product.setUserID(rs.getInt("uID"));
                 product.setDonationCompany("DonationCompany");
                 donations.add(product);
             }

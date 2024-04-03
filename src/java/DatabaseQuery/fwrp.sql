@@ -40,12 +40,12 @@ FOREIGN KEY (userID) References Users(userID)
 );
 
 CREATE VIEW DonationView AS
-SELECT p.userID,productID, productName, donationAmount,userName as DonationCompany
+SELECT p.userID as uID,productID, productName, donationAmount,userName as DonationCompany
 FROM Products as p join users as u on p.userID = u.userID
 WHERE donationAmount IS NOT NULL AND donationAmount > 0;
 
 CREATE VIEW DiscountView AS
-SELECT p.userID,productID, productName, discountAmount, discountPrice, userName as DiscountCompany
+SELECT p.userID as uID,productID, productName, discountAmount, discountPrice, userName as DiscountCompany
 FROM Products as p join users as u on p.userID = u.userID
 WHERE discountAmount IS NOT NULL AND discountAmount > 0;
 
@@ -63,7 +63,7 @@ VALUES
     ('Product1', 10.99, 100, 'A', 'Y', 3, '2024-04-30'),
     ('Product2', 15.99, 150, 'B', 'N', 2, '2025-04-30'),
     ('Product3', 20.49, 200, 'A', 'Y', 3, '2024-04-15'),
-    ('Product4', 8.75, 75, 'C','N', 4, '2024-4-20'),
+    ('Product4', 8.75, 75, 'C','N', 2, '2024-4-20'),
     ('Product5', 12.25, 120, 'D', 'Y', 2, '2024-04-25'),
     ('Product6', 18.99, 180, 'A', 'N', 3, '2024-10-10'),
     ('Product7', 9.99, 90, 'D', 'Y', 3, '2025-01-05'),
@@ -74,7 +74,7 @@ VALUES
 INSERT INTO UserSubscription (userID, productType,userCity)
 VALUES
     (4, 'A','Ottawa'),
-    (5, 'B','Toronto'),
+    (5, 'B','Ottawa'),
     (6, 'C','Ottawa'),
     (7, 'A','Toronto');
 

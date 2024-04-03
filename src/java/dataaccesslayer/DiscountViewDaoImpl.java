@@ -29,18 +29,18 @@ public class DiscountViewDaoImpl {
             DataSource ds = new DataSource();
             con = ds.createConnection();
             pstmt = con.prepareStatement(
-                    "SELECT * form DiscountView ORDER BY productID");
+                    "SELECT * from DiscountView ORDER BY productID");
            
             rs = pstmt.executeQuery();
             discounts = new ArrayList<DiscountView>();
             while (rs.next()) {
                 DiscountView product = new DiscountView();                
                 product.setProductID(rs.getInt("productID"));
-                product.setProductName(rs.getNString("productName"));
+                product.setProductName(rs.getString("productName"));
                 product.setDiscountPrice(rs.getDouble("discountPrice"));
                 product.setDiscountAmount(rs.getDouble("discountAmount"));
                 product.setDiscountPrice(rs.getDouble("discountPrice"));
-                product.setUserID(rs.getInt("p.userID"));
+                product.setUserID(rs.getInt("uID"));
                 product.setDicountCompany("DiscountCompany");
                 discounts.add(product);
             }

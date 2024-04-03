@@ -29,7 +29,7 @@ public class ProductsDaoImpl {
             DataSource ds = new DataSource();
             con = ds.createConnection();
             pstmt = con.prepareStatement(
-                    "SELECT * form products where userID = ? ORDER BY productID");
+                    "SELECT * from products where userID = ? ORDER BY productID");
              pstmt.setInt(1, userID);
             rs = pstmt.executeQuery();
             products = new ArrayList<Products>();
@@ -46,7 +46,7 @@ public class ProductsDaoImpl {
                 product.setProductType(rs.getString("productType"));
                 product.setSurplusFlage(rs.getString("surplusFlage"));
                 product.setUserID(rs.getInt("userID"));
-                product.setExpiryDate(rs.getDate("expiryData"));
+                product.setExpiryDate(rs.getDate("expiryDate"));
                 products.add(product);
             }
         } catch (SQLException e) {
