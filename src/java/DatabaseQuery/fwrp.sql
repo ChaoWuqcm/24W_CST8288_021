@@ -10,8 +10,8 @@ CREATE TABLE Users
    userEmail varchar(30) NOT NULL,
    userPassword varchar(30) NOT NULL,
    userCity varchar(30) NOT NULL,
-   userType varchar(30) NOT NULL
-  
+   userType varchar(30) NOT NULL,
+   userPhone varchar(30) NOT NULL
 );
 CREATE TABLE Products
 (
@@ -19,9 +19,9 @@ CREATE TABLE Products
    productName varchar(30) NOT NULL,
    salePrice decimal NOT NULL,
    discountPrice decimal,
-   inventoryAmount decimal NOT NULL,
-   discountAmount decimal,
-   donationAmount decimal,
+   inventoryAmount int NOT NULL,
+   discountAmount int,
+   donationAmount int,
    productType varchar(30) NOT NULL,
    surplusFlage varchar(4),
    userID int NOT NULL,
@@ -35,8 +35,10 @@ usID int NOT NULL AUTO_INCREMENT PRIMARY KEY,
 userID int NOT NULL,
 productType varchar(30) NOT NULL,
 userCity varchar(30) NOT NULL,
+surplusFlage varchar(4),
 FOREIGN KEY (userID) References Users(userID)
 );
+
 CREATE VIEW DonationView AS
 SELECT p.userID,productID, productName, donationAmount,userName as DonationCompany
 FROM Products as p join users as u on p.userID = u.userID
@@ -48,13 +50,13 @@ FROM Products as p join users as u on p.userID = u.userID
 WHERE discountAmount IS NOT NULL AND discountAmount > 0;
 
 
-INSERT INTO users (userName,userEmail,userPassword,userCity,userType) VALUES ('admin','admin@admin.com','admin','ottawa','admin');
-INSERT INTO users (userName,userEmail,userPassword,userCity,userType) VALUES ('Walmart','Walmart@Walmart.com','walmart','Toronto',"retailer");
-INSERT INTO users (userName,userEmail,userPassword,userCity,userType) VALUES ('loblaws','loblaws@loblaws.com','loblaws','Ottawa',"retailer");
-INSERT INTO users (userName,userEmail,userPassword,userCity,userType) VALUES ('foodbanks','foodbanks@foodbanks.com','foodbanks','Ottawa',"charitable organization");
-INSERT INTO users (userName,userEmail,userPassword,userCity,userType) VALUES ('foodMissions','foodMissions@foodMissions.com','foodMissions','Ottawa',"charitable organization");
-INSERT INTO users (userName,userEmail,userPassword,userCity,userType) VALUES ('Tom','toms@gmail.com','toms','Ottawa',"consumer");
-INSERT INTO users (userName,userEmail,userPassword,userCity,userType) VALUES ('Mike','mike@gmail.com','mike','Toronto',"consumer");
+INSERT INTO users (userName,userEmail,userPassword,userCity,userType,userPhone) VALUES ('admin','admin@admin.com','admin','ottawa','admin','6130000000');
+INSERT INTO users (userName,userEmail,userPassword,userCity,userType,userPhone) VALUES ('Walmart','Walmart@Walmart.com','walmart','Toronto','retailer','4161234567');
+INSERT INTO users (userName,userEmail,userPassword,userCity,userType,userPhone) VALUES ('loblaws','loblaws@loblaws.com','loblaws','Ottawa','retailer','6131234567');
+INSERT INTO users (userName,userEmail,userPassword,userCity,userType,userPhone) VALUES ('foodbanks','foodbanks@foodbanks.com','foodbanks','Ottawa','charitable organization','6134445555');
+INSERT INTO users (userName,userEmail,userPassword,userCity,userType,userPhone) VALUES ('foodMissions','foodMissions@foodMissions.com','foodMissions','Toronto','charitable organization','4165556666');
+INSERT INTO users (userName,userEmail,userPassword,userCity,userType,userPhone) VALUES ('Tom','toms@gmail.com','toms','Ottawa','consumer','6132223333');
+INSERT INTO users (userName,userEmail,userPassword,userCity,userType,userPhone) VALUES ('Mike','mike@gmail.com','mike','Toronto','consumer','4162221111');
 
 INSERT INTO Products (productName, salePrice, inventoryAmount, productType, surplusFlage, userID, expiryDate)
 VALUES
@@ -72,19 +74,18 @@ VALUES
 INSERT INTO UserSubscription (userID, productType,userCity)
 VALUES
     (4, 'A','Ottawa'),
-    (5, 'B','Ottawa'),
+    (5, 'B','Toronto'),
     (6, 'C','Ottawa'),
     (7, 'A','Toronto');
-select * from Products;
-select * from users;
-select * from DonationView;
-select * from DiscountView;
+
+
 update products set donationAmount =20.0  where productID = 6;
 update products set donationAmount =50.0  where productID = 2;
 update products set discountAmount =50.0  where productID = 3;
 update products set discountAmount =50.0  where productID = 10;
+select * from Products;
+select * from users;
+select * from DonationView;
+select * from DiscountView;
 select * from usersubscription;
 
-
-
-                                            ;

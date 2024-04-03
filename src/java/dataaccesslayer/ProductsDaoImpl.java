@@ -36,7 +36,7 @@ public class ProductsDaoImpl {
             while (rs.next()) {
                 Products product = new Products();
                 product.setProductID(rs.getInt("productID"));
-                product.setProductName(rs.getNString("productName"));
+                product.setProductName(rs.getString("productName"));
                 product.setSalePrice(rs.getDouble("salePrice"));
                 product.setDiscountPrice(rs.getDouble("discountPrice"));
                 product.setInventoryAmount(rs.getDouble("inventoryAmount"));
