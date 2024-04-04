@@ -41,7 +41,7 @@ public class UserBusinessLogic {
     }
     
     public void addUser(User user) throws SQLException {
-        if(getUesrByEmail(user.getUserEmail())!=null){
+        if(!(getUesrByEmail(user.getUserEmail())!=null)){
         userDao.addUser(user);
         }    
     }
