@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package model;
-import java.util.Date;
+import java.sql.Date;
 //import java.time.LocalDate;
 //import java.time.LocalTime;
 //import java.time.LocalDateTime;
