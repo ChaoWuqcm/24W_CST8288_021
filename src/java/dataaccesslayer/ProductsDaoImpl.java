@@ -82,6 +82,7 @@ public class ProductsDaoImpl {
     public void addProduct(Products product) {
         Connection con = null;
         PreparedStatement pstmt = null;
+        System.out.println( product.toString());
         try {
             DataSource ds = new DataSource();
             con = ds.createConnection();
@@ -90,7 +91,7 @@ public class ProductsDaoImpl {
                            +"(productName, salePrice, inventoryAmount, productType,"
                            +" surplusFlage, userID, expiryDate,"
                            +"discountAmount,discountPrice,donationAmount) "
-                           +" VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?))" ;
+                           +" VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)" ;
                            
             pstmt = con.prepareStatement(query);
             pstmt.setString(1, product.getProductName());
@@ -99,10 +100,12 @@ public class ProductsDaoImpl {
             pstmt.setString(4, product.getProductType());
             pstmt.setString(5, product.getSurplusFlage());
             pstmt.setInt(6, product.getUserID());
+            //pstmt.setDate(7,null);
             pstmt.setDate(7,new java.sql.Date(product.getExpiryDate().getDate()));
             pstmt.setDouble(8, product.getDiscountAmount());
             pstmt.setDouble(9, product.getDiscountPrice());
             pstmt.setDouble(10, product.getDonationAmount());           
+            System.out.println(query);
             pstmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -129,14 +132,18 @@ public class ProductsDaoImpl {
         try {
             DataSource ds = new DataSource();
             con = ds.createConnection();
-            String query = " delete from products where productID = ?" ;             
+            String query = "UPDATE products SET productName=?, salePrice=?, inventoryAmount=?, "
+                    + "productType=?, surplusFlage=?, expiryDate=?, discountAmount=?, "
+                    + "discountPrice=?, donationAmount=? WHERE productID=?";            
+            
             pstmt = con.prepareStatement(query);
             pstmt.setString(1, product.getProductName());
             pstmt.setDouble(2, product.getSalePrice());
             pstmt.setDouble(3, product.getInventoryAmount());
             pstmt.setString(4, product.getProductType());
             pstmt.setString(5, product.getSurplusFlage());
-            pstmt.setDate(6,new java.sql.Date(product.getExpiryDate().getDate()));
+            //pstmt.setDate(6,new java.sql.Date(product.getExpiryDate().getDate()));
+            pstmt.setDate(6,null);
             pstmt.setDouble(7, product.getDiscountAmount());
             pstmt.setDouble(8, product.getDiscountPrice());
             pstmt.setDouble(9, product.getDonationAmount());
@@ -168,7 +175,7 @@ public class ProductsDaoImpl {
         try {
             DataSource ds = new DataSource();
             con = ds.createConnection();
-            String query = "delete form products where productID = ?" ;             
+            String query = "delete from products where productID = ?" ;             
             pstmt = con.prepareStatement(query);
              pstmt.setInt(1, product.getProductID());
             pstmt.executeUpdate();
