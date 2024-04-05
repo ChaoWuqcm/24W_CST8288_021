@@ -113,7 +113,8 @@ public class AuthorsServlet extends HttpServlet {
         Boolean isExist=false;
         String email=request.getParameter("Email");
         String password=request.getParameter("password");
-        if(UB.getUesrByEmail(email)!=null&&UB.getUesrByPass(password)!=null){
+        User user = UB.getUesrByEmail(email);
+        if( user!=null && user.getUserPassword().equals(password)){
                  isExist=true;            
         }
         return isExist;
