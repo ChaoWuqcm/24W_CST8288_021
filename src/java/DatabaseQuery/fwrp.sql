@@ -38,14 +38,13 @@ userCity varchar(30) NOT NULL,
 surplusFlage varchar(4),
 FOREIGN KEY (userID) References Users(userID)
 );
-
+Drop fwrp.DonationView;
 CREATE VIEW DonationView AS
-SELECT p.userID as uID,productID, productName, donationAmount,userName as DonationCompany
+SELECT p.userID as uID,productID, productName, donationAmount,u.userName as DonationCompany
 FROM Products as p join users as u on p.userID = u.userID
 WHERE donationAmount IS NOT NULL AND donationAmount > 0;
 
-CREATE VIEW DiscountView AS
-SELECT p.userID as uID,productID, productName, discountAmount, discountPrice, userName as DiscountCompany
+SELECT p.userID as uID,productID, productName, discountAmount, discountPrice, u.userName as DiscountCompany
 FROM Products as p join users as u on p.userID = u.userID
 WHERE discountAmount IS NOT NULL AND discountAmount > 0;
 

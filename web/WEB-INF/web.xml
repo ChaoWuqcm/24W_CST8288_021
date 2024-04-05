@@ -9,9 +9,25 @@
         <servlet-name>controller.AuthorsServlet</servlet-name>
         <servlet-class>controller.AuthorsServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DonationViewServlet</servlet-name>
+        <servlet-class>controller.DonationViewServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DonationUpdateServlet</servlet-name>
+        <servlet-class>controller.DonationUpdateServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>controller.AuthorsServlet</servlet-name>
         <url-pattern>/AuthorsServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DonationViewServlet</servlet-name>
+        <url-pattern>/DonationViewServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DonationUpdateServlet</servlet-name>
+        <url-pattern>/DonationUpdateServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -196,5 +196,70 @@ public class ProductsDaoImpl {
             }
         }
     }
-
+public void updateDonation(int id,double amount) {
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        try {
+            DataSource ds = new DataSource();
+            con = ds.createConnection();
+            String query = "UPDATE products SET donationAmount=? WHERE productID=?";
+                              
+            
+            pstmt = con.prepareStatement(query);
+            pstmt.setDouble(1, amount);
+            pstmt.setInt(2,id);
+            
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (pstmt != null) {
+                    pstmt.close();
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+            }
+            try {
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+            }
+        }
+    }
+public void updateDiscount(int id,double amount) {
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        try {
+            DataSource ds = new DataSource();
+            con = ds.createConnection();
+            String query = "UPDATE products SET discountAmount=? WHERE productID=?";
+                              
+            
+            pstmt = con.prepareStatement(query);
+            pstmt.setDouble(1, amount);
+            pstmt.setInt(2,id);
+            
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (pstmt != null) {
+                    pstmt.close();
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+            }
+            try {
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+            }
+        }
+    }
 }

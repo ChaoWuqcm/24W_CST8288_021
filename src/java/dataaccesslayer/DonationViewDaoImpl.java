@@ -34,7 +34,7 @@ public class DonationViewDaoImpl {
                 product.setProductName(rs.getString("productName"));
                 product.setDonationAmount(rs.getDouble("donationAmount"));
                 product.setUserID(rs.getInt("uID"));
-                product.setDonationCompany("DonationCompany");
+                product.setDonationCompany(rs.getString("DonationCompany"));
                 donations.add(product);
             }
         } catch (SQLException e) {

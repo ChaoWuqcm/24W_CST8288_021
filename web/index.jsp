@@ -11,7 +11,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
     </head>
     <body>
         <div><a href="AuthorsServlet">List Authors</a></div>
-
+        <div><a href="DonationViewServlet">List Donation food</a></div> 
         <FORM ACTION="AuthorsServlet" METHOD="POST">
             First Name:
             <INPUT TYPE="TEXT" NAME="firstName" ><BR>

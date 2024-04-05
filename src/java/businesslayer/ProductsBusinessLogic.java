@@ -4,11 +4,9 @@
  */
 package businesslayer;
 
-import dataaccesslayer.AuthorsDaoImpl;
 import dataaccesslayer.ProductsDaoImpl;
 import java.sql.SQLException;
 import java.util.List;
-import model.Author;
 import model.Products;
 
 /**
@@ -36,4 +34,12 @@ public class ProductsBusinessLogic {
     public void deleteProduct(Products product) {
          productsDao.deleteProduct(product);
     }
+    public void updateDonation(int id,double amount) {
+        productsDao.updateDonation(id,amount);
+    }
+    public void updateDiscount(int id,double amount) {
+        productsDao.updateDiscount(id,amount);
+    }
+
+    
 }
