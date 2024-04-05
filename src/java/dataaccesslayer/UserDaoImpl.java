@@ -225,7 +225,7 @@ public class UserDaoImpl {
         return user;
     } 
     
-   public User getUesrByEmailPass(String userEmail, String userPassword) throws SQLException {
+   public User getUesrByPass(String userPassword) throws SQLException {
         Connection con = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -234,9 +234,8 @@ public class UserDaoImpl {
             DataSource ds = new DataSource();
             con = ds.createConnection();
             pstmt = con.prepareStatement(
-                    "SELECT * FROM Users where userEmail = ? and password =?");
-            pstmt.setString(1, userEmail);
-            pstmt.setString(2, userPassword);
+                    "SELECT * FROM Users where userPassword =?");
+            pstmt.setString(1, userPassword);
             rs = pstmt.executeQuery();
             while (rs.next()) {
                 user.setUserID(rs.getInt("userID"));
@@ -327,6 +326,36 @@ public class UserDaoImpl {
             pstmt.setString(4, user.getUserCity());
             pstmt.setString(5, user.getUserType());
             pstmt.setString(6, user.getUserEmail());
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (pstmt != null) {
+                    pstmt.close();
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+            }
+            try {
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+            }
+        }
+    }
+    
+    public void updateUserPass(User user) {
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        try {
+            DataSource ds = new DataSource();
+            con = ds.createConnection();        
+            pstmt = con.prepareStatement("Update Users set userPassword = ? where userEmail = ?");
+            pstmt.setString(1, user.getUserPassword());
+            pstmt.setString(2, user.getUserEmail());
             pstmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

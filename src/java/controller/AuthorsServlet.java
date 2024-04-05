@@ -5,16 +5,20 @@ package controller;
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
 import businesslayer.AuthorsBusinessLogic;
+import businesslayer.UserBusinessLogic;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Author;
+import model.User;
 
 public class AuthorsServlet extends HttpServlet {
 
@@ -29,19 +33,34 @@ public class AuthorsServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        AuthorsBusinessLogic authorBusinessLogic = new AuthorsBusinessLogic();
-        List<Author> authors = null;
+//        AuthorsBusinessLogic authorBusinessLogic = new AuthorsBusinessLogic();
+//        List<Author> authors = null;
+//
+//        try {
+//            authors = authorBusinessLogic.getAllAuthors();
+//        } catch (SQLException ex) {
+//            log(ex.getMessage());
+//        }
+//
+//        request.setAttribute("authors", authors);
+//
+//        RequestDispatcher dispatcher = request.getRequestDispatcher("views/authors.jsp");
+//        dispatcher.forward(request, response);
 
-        try {
-            authors = authorBusinessLogic.getAllAuthors();
+        UserBusinessLogic UB=new UserBusinessLogic();
+          List<User>  users= null;
+          
+           try {
+             users = UB.getAllUsers();
         } catch (SQLException ex) {
             log(ex.getMessage());
         }
 
-        request.setAttribute("authors", authors);
+        request.setAttribute("users", users);
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("views/authors.jsp");
         dispatcher.forward(request, response);
+
     }
 
     /**
@@ -54,9 +73,19 @@ public class AuthorsServlet extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        addAuthor(request, response);
+        try {
+            //        addAuthor(request, response);
+//
+//        doGet(request, response);
 
-        doGet(request, response);
+        if(checkUser(request, response)){
+            doGet(request, response);
+        }
+        } catch (SQLException ex) {
+            Logger.getLogger(AuthorsServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+          
+          
     }
 
     /**
@@ -77,6 +106,17 @@ public class AuthorsServlet extends HttpServlet {
         author.setFirstName(firstName);
         author.setLastName(lastName);
         authorBusinessLogic.addAuthor(author);
+    }
+    
+    private Boolean checkUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
+        UserBusinessLogic UB=new UserBusinessLogic();
+        Boolean isExist=false;
+        String email=request.getParameter("Email");
+        String password=request.getParameter("password");
+        if(UB.getUesrByEmail(email)!=null&&UB.getUesrByPass(password)!=null){
+                 isExist=true;            
+        }
+        return isExist;
     }
 
 }

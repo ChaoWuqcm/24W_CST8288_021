@@ -36,8 +36,8 @@ public class UserBusinessLogic {
         return userDao.getUesrByEmail(userEmail);
     } 
     
-    public User getUesrByEmailPass(String userEmail, String userPassword) throws SQLException {    
-        return userDao.getUesrByEmailPass(userEmail,userPassword);
+    public User getUesrByPass(String userPassword) throws SQLException {    
+        return userDao.getUesrByPass(userPassword);
     }
     
     public void addUser(User user) throws SQLException {

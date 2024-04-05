@@ -13,10 +13,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
         <div><a href="AuthorsServlet">List Authors</a></div>
 
         <FORM ACTION="AuthorsServlet" METHOD="POST">
-            First Name:
-            <INPUT TYPE="TEXT" NAME="firstName" ><BR>
-            Last Name:
-            <INPUT TYPE="TEXT" NAME="lastName" ><P>
+            Email:
+            <INPUT TYPE="TEXT" NAME="Email" ><BR>
+            password:
+            <INPUT TYPE="TEXT" NAME="password" ><P>
                 <INPUT TYPE="SUBMIT"> <!-- Press this button to submit form -->
         </FORM>
     </body>
