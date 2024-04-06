@@ -17,6 +17,10 @@
         <servlet-name>DonationUpdateServlet</servlet-name>
         <servlet-class>controller.DonationUpdateServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SubscriptionMsgsServlet</servlet-name>
+        <servlet-class>controller.SubscriptionMsgsServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>controller.AuthorsServlet</servlet-name>
         <url-pattern>/AuthorsServlet</url-pattern>
@@ -28,6 +32,10 @@
     <servlet-mapping>
         <servlet-name>DonationUpdateServlet</servlet-name>
         <url-pattern>/DonationUpdateServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SubscriptionMsgsServlet</servlet-name>
+        <url-pattern>/SubscriptionMsgsServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

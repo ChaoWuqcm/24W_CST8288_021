@@ -38,7 +38,25 @@ userCity varchar(30) NOT NULL,
 surplusFlage varchar(4),
 FOREIGN KEY (userID) References Users(userID)
 );
-Drop fwrp.DonationView;
+
+CREATE TABLE SubscriptionMsg
+(
+ ID  int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+ senderName varchar(100) NOT NULL,
+ recipientID int NOT NULL,
+ content varchar(200) NOT NULL,
+ dateSent date
+);
+INSERT INTO subscriptionMsg (senderName,recipientID,content,dateSent)
+VALUES
+('walmart',6,'meat','2024-04.01'),
+('walmart',6,'fruit','2024-04.03'),
+('loblaws',7,'meat','2024-04.01'),
+('loblaws',7,'fruit','2024-04.03');
+
+select * from  SubscriptionMsg;
+
+-- Drop fwrp.DonationView;
 CREATE VIEW DonationView AS
 SELECT p.userID as uID,productID, productName, donationAmount,u.userName as DonationCompany
 FROM Products as p join users as u on p.userID = u.userID
