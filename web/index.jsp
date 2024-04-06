@@ -8,11 +8,12 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
         <title>TODO supply a title</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
+    </head>SubscriptionServlet
     <body>
         <div><a href="AuthorsServlet">List Authors</a></div>
         <div><a href="DonationViewServlet">List Donation food</a></div> 
         <div><a href="SubscriptionMsgsServlet">View Message</a></div>
+        <div><a href="SubscriptionServlet">My Subscription</a></div>
         <FORM ACTION="AuthorsServlet" METHOD="POST">
             First Name:
             <INPUT TYPE="TEXT" NAME="firstName" ><BR>

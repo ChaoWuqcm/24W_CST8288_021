@@ -1,8 +1,10 @@
 /* for FWRP by Dunxing Yu  */
 
+-- CreatFWRP Database
 DROP DATABASE IF EXISTS FWRP;
 CREATE DATABASE FWRP;
 use FWRP;
+-- CREATE TABLE Users
 CREATE TABLE Users
 (
    userID int NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -13,6 +15,8 @@ CREATE TABLE Users
    userType varchar(30) NOT NULL,
    userPhone varchar(30) NOT NULL
 );
+
+-- CREATE TABLE Products
 CREATE TABLE Products
 (
    productID int NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -29,16 +33,28 @@ CREATE TABLE Products
    FOREIGN KEY (userID) References Users(userID)
 );      
 
+-- CREATE TABLE UserSubscription
 CREATE TABLE UserSubscription
 (
-usID int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-userID int NOT NULL,
-productType varchar(30) NOT NULL,
-userCity varchar(30) NOT NULL,
-surplusFlage varchar(4),
-FOREIGN KEY (userID) References Users(userID)
+    subscriptionID int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    userID int NOT NULL,
+    productType varchar(30) NOT NULL,
+    communicationMethod  varchar(30),
+    userEmail  varchar(30),
+    userPhoneNumber  varchar(30),
+    userCity varchar(30) NOT NULL,
+    surplusFlage varchar(4),
+    FOREIGN KEY (userID) References Users(userID)
 );
 
+-- CREATE TABLE ProductTypes
+CREATE TABLE ProductTypes
+(
+    ID int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    productType varchar(30) NOT NULL
+);
+
+-- CREATE TABLE SubscriptionMsg
 CREATE TABLE SubscriptionMsg
 (
  ID  int NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -47,27 +63,21 @@ CREATE TABLE SubscriptionMsg
  content varchar(200) NOT NULL,
  dateSent date
 );
-INSERT INTO subscriptionMsg (senderName,recipientID,content,dateSent)
-VALUES
-('walmart',6,'meat','2024-04.01'),
-('walmart',6,'fruit','2024-04.03'),
-('loblaws',7,'meat','2024-04.01'),
-('loblaws',7,'fruit','2024-04.03');
 
-select * from  SubscriptionMsg;
 
--- Drop fwrp.DonationView;
+-- CREATE VIEW DonationView
 CREATE VIEW DonationView AS
-SELECT p.userID as uID,productID, productName, donationAmount,u.userName as DonationCompany
+SELECT p.userID as uID,productID, productName, donationAmount,u.userName as DonationCompany,expiryDate
 FROM Products as p join users as u on p.userID = u.userID
 WHERE donationAmount IS NOT NULL AND donationAmount > 0;
 
+-- CREATE VIEW DiscountView
 CREATE VIEW DiscountView AS
-SELECT p.userID as uID,productID, productName, discountAmount, discountPrice, u.userName as DiscountCompany
+SELECT p.userID as uID,productID, productName, discountAmount, discountPrice, u.userName as DiscountCompany,expiryDate
 FROM Products as p join users as u on p.userID = u.userID
 WHERE discountAmount IS NOT NULL AND discountAmount > 0;
 
-
+-- INSERT users TO users
 INSERT INTO users (userName,userEmail,userPassword,userCity,userType,userPhone) VALUES ('admin','admin@admin.com','admin','ottawa','admin','6130000000');
 INSERT INTO users (userName,userEmail,userPassword,userCity,userType,userPhone) VALUES ('Walmart','Walmart@Walmart.com','walmart','Toronto','retailer','4161234567');
 INSERT INTO users (userName,userEmail,userPassword,userCity,userType,userPhone) VALUES ('loblaws','loblaws@loblaws.com','loblaws','Ottawa','retailer','6131234567');
@@ -76,27 +86,46 @@ INSERT INTO users (userName,userEmail,userPassword,userCity,userType,userPhone) 
 INSERT INTO users (userName,userEmail,userPassword,userCity,userType,userPhone) VALUES ('Tom','toms@gmail.com','toms','Ottawa','consumer','6132223333');
 INSERT INTO users (userName,userEmail,userPassword,userCity,userType,userPhone) VALUES ('Mike','mike@gmail.com','mike','Toronto','consumer','4162221111');
 
+-- INSERT product TO Products
 INSERT INTO Products (productName, salePrice, inventoryAmount, productType, surplusFlage, userID, expiryDate)
 VALUES
-    ('Product1', 10.99, 100, 'A', 'Y', 3, '2024-04-30'),
-    ('Product2', 15.99, 150, 'B', 'N', 2, '2025-04-30'),
-    ('Product3', 20.49, 200, 'A', 'Y', 3, '2024-04-15'),
-    ('Product4', 8.75, 75, 'C','N', 2, '2024-4-20'),
-    ('Product5', 12.25, 120, 'D', 'Y', 2, '2024-04-25'),
-    ('Product6', 18.99, 180, 'A', 'N', 3, '2024-10-10'),
-    ('Product7', 9.99, 90, 'D', 'Y', 3, '2025-01-05'),
-    ('Product8', 22.50, 250, 'A', 'N', 3, '2024-04-12'),
-    ('Product9', 17.25, 130, 'B', 'Y', 2, '2024-05-15'),
-    ('Product10', 11.49, 110, 'C', 'N', 3, '2024-07-01');
-    
+    ('Product1', 10.99, 100, 'bread', 'Y', 3, '2024-04-30'),
+    ('Product2', 15.99, 150, 'bread', 'N', 2, '2025-04-30'),
+    ('Product3', 20.49, 200, 'meat', 'Y', 3, '2024-04-15'),
+    ('Product4', 8.75, 75, 'meat','N', 2, '2024-4-20'),
+    ('Product5', 12.25, 120, 'friut', 'Y', 3, '2024-04-25'),
+    ('Product6', 18.99, 180, 'friut', 'N', 2, '2024-10-10'),
+    ('Product7', 9.99, 90, 'vegi', 'Y', 3, '2025-01-05'),
+    ('Product8', 22.50, 250, 'vegi', 'N', 2, '2024-04-12'),
+    ('Product9', 17.25, 130, 'dairy', 'Y', 3, '2024-05-15'),
+    ('Product10', 11.49, 110, 'dairy', 'N', 2, '2024-07-01');
+
+-- INSERT records TO UserSubscription    
 INSERT INTO UserSubscription (userID, productType,userCity)
 VALUES
-    (4, 'A','Ottawa'),
-    (5, 'B','Ottawa'),
-    (6, 'C','Ottawa'),
-    (7, 'A','Toronto');
+    (6, 'meat','Ottawa'),
+    (7, 'meat','Ottawa'),
+    (6, 'bread','Ottawa'),
+    (7, 'bread','Toronto');
 
+-- INSERT records to ProductTypes
+INSERT INTO ProductTypes(productType)
+VALUES
+    ('meat'),
+    ('vegi'),
+    ('dairy'),
+    ('friut'),
+    ('bread');
 
+-- INSERT records TO subscriptionMsg
+INSERT INTO subscriptionMsg (senderName,recipientID,content,dateSent)
+VALUES
+    ('walmart',6,'meat','2024-04.01'),
+    ('walmart',6,'fruit','2024-04.03'),
+    ('loblaws',7,'meat','2024-04.01'),
+    ('loblaws',7,'fruit','2024-04.03');
+
+-- qureies
 update products set donationAmount =20.0  where productID = 6;
 update products set donationAmount =50.0  where productID = 2;
 update products set discountAmount =50.0  where productID = 3;
@@ -105,5 +134,8 @@ select * from Products;
 select * from users;
 select * from DonationView;
 select * from DiscountView;
-select * from usersubscription;
+select * from usersubscription where userID = 6;
+select * from  SubscriptionMsg ;
+select * from  SubscriptionMsg;
+select * from  ProductTypes;
 
