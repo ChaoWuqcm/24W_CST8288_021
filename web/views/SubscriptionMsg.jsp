@@ -17,7 +17,7 @@
         <title>Donation food </title>
     </head>
     <body>
-        <h2>Donation food List</h2>
+        <h2>Subscription Messages</h2>
 
         <table border="1">
             <thead>
@@ -39,14 +39,15 @@
                     <td><%= message.getRecipientID() %></td>
                     <td><%= message.getContent() %></td>
                     <td><%= message.getDateSent() %></td>
-                    <td><button onclick="submitForm(<%= message.getId() %>')">Delete</button></td>
+                    <td><button onclick="submitForm('<%= message.getId() %>')">Delete</button></td>
+                    
                 </tr>
                 <% }%>
             </tbody>
         </table>
 
         <!-- Hidden form  for pass data to Servlet -->
-    <form id="redirectForm" action="<%= request.getContextPath() %>/SubscriptionMsgsServlet" method="post">
+    <form id="redirectForm" action="<%= request.getContextPath() %>/SubscriptionMsgsDeleteServlet" method="post">
         <input type="hidden" name="id" id="idInput">
     </form>
 
@@ -58,7 +59,7 @@
                 document.getElementById("idInput").value = id;            
                 //submit form
                 document.getElementById("redirectForm").submit();
-            }
+            
         }
     </script>   
      

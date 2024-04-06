@@ -6,7 +6,7 @@ package businesslayer;
 
 import dataaccesslayer.SubscriptionMsgDaoImpl;
 import java.sql.SQLException;
-import java.util.List;
+import java.util.ArrayList;
 import model.SubscriptionMsg;
 
 /**
@@ -21,7 +21,7 @@ public class SubscriptionMsgBusinessLogic {
         msgesDao = new SubscriptionMsgDaoImpl();
     }
 
-    public List<SubscriptionMsg> getAllSubscriptionMsgs(int recipientID) throws SQLException {
+    public ArrayList<SubscriptionMsg> getAllSubscriptionMsgs(int recipientID) throws SQLException {
         return msgesDao.getAllSubscriptionMsgs(recipientID);
     }
     public void addSubscriptionMsg(SubscriptionMsg msg) {

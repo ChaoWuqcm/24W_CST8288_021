@@ -9,7 +9,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 import model.SubscriptionMsg;
 
 /**
@@ -20,7 +19,7 @@ public class SubscriptionMsgDaoImpl {
 
     public SubscriptionMsgDaoImpl() {
     }
-    public List<SubscriptionMsg> getAllSubscriptionMsgs(int recipientID) throws SQLException {
+    public ArrayList<SubscriptionMsg> getAllSubscriptionMsgs(int recipientID) throws SQLException {
         Connection con = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -29,7 +28,7 @@ public class SubscriptionMsgDaoImpl {
             DataSource ds = new DataSource();
             con = ds.createConnection();
             pstmt = con.prepareStatement(
-                    "SELECT * from products where recipientID = ? ");
+                    "SELECT * from SubscriptionMsg where recipientID = ? ");
              pstmt.setInt(1, recipientID);
             rs = pstmt.executeQuery();
             msges = new ArrayList<SubscriptionMsg>();
@@ -115,7 +114,7 @@ public class SubscriptionMsgDaoImpl {
         try {
             DataSource ds = new DataSource();
             con = ds.createConnection();
-            String query = "delete from SubscriptionMsg where recipientID = ?" ;             
+            String query = "delete from SubscriptionMsg where ID = ?" ;             
             pstmt = con.prepareStatement(query);
              pstmt.setInt(1, id);
             pstmt.executeUpdate();

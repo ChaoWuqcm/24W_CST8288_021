@@ -29,7 +29,7 @@ public class SubscriptionMsgsServlet extends HttpServlet {
 
         try {
             // Assuming recipientID 6 is hardcoded, you may need to retrieve it from request parameters
-            messages = (ArrayList<SubscriptionMsg>) subscriptionMsgLogic.getAllSubscriptionMsgs(6);
+            messages =  subscriptionMsgLogic.getAllSubscriptionMsgs(7);
         } catch (SQLException ex) {
             // Print the stack trace for debugging purposes
             // Log the exception properly, consider using a logging framework like Log4j

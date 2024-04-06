@@ -21,6 +21,10 @@
         <servlet-name>SubscriptionMsgsServlet</servlet-name>
         <servlet-class>controller.SubscriptionMsgsServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SubscriptionMsgsDeleteServlet</servlet-name>
+        <servlet-class>controller.SubscriptionMsgsDeleteServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>controller.AuthorsServlet</servlet-name>
         <url-pattern>/AuthorsServlet</url-pattern>
@@ -36,6 +40,10 @@
     <servlet-mapping>
         <servlet-name>SubscriptionMsgsServlet</servlet-name>
         <url-pattern>/SubscriptionMsgsServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SubscriptionMsgsDeleteServlet</servlet-name>
+        <url-pattern>/SubscriptionMsgsDeleteServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
