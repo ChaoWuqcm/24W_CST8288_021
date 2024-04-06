@@ -44,6 +44,7 @@ SELECT p.userID as uID,productID, productName, donationAmount,u.userName as Dona
 FROM Products as p join users as u on p.userID = u.userID
 WHERE donationAmount IS NOT NULL AND donationAmount > 0;
 
+CREATE VIEW DiscountView As
 SELECT p.userID as uID,productID, productName, discountAmount, discountPrice, u.userName as DiscountCompany
 FROM Products as p join users as u on p.userID = u.userID
 WHERE discountAmount IS NOT NULL AND discountAmount > 0;
