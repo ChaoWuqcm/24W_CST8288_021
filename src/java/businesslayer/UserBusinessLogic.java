@@ -36,18 +36,18 @@ public class UserBusinessLogic {
         return userDao.getUesrByEmail(userEmail);
     } 
     
-    public User getUesrByPass(String userPassword) throws SQLException {    
-        return userDao.getUesrByPass(userPassword);
-    }
-    
     public void addUser(User user) throws SQLException {
-        if(!(getUesrByEmail(user.getUserEmail())!=null)){
-        userDao.addUser(user);
+        if(getUesrByEmail(user.getUserEmail())==null){
+            userDao.addUser(user);
         }    
     }
     
     public void updateUser(User user){
         userDao.updateUser(user);
+    }
+    
+    public void updateUserPass(User user) {
+        userDao.updateUserPass(user);
     }
     
     public void deleteUser(User user){

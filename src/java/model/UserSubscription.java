@@ -16,20 +16,18 @@ public class UserSubscription {
     private String userEmail;
     private String userPhoneNumber;
     private String userCity;
-    private String surplusFlag;
     
     public UserSubscription(){
         
     }
     
-    public UserSubscription(int userID, String productType, String communicationMethod, String userEmail, String userPhoneNumber, String userCity, String surplusFlag) {
+    public UserSubscription(int userID, String productType, String communicationMethod, String userEmail, String userPhoneNumber, String userCity) {
         this.userID = userID;
         this.productType = productType;
         this.communicationMethod = communicationMethod;
         this.userEmail = userEmail;
         this.userPhoneNumber = userPhoneNumber;
         this.userCity = userCity;
-        this.surplusFlag = surplusFlag;
     }
 
     public int getSubscriptionID() {
@@ -87,14 +85,5 @@ public class UserSubscription {
     public void setUserCity(String userCity) {
         this.userCity = userCity;
     }
-
-    public String getSurplusFlag() {
-        return surplusFlag;
-    }
-
-    public void setSurplusFlag(String surplusFlag) {
-        this.surplusFlag = surplusFlag;
-    }
-    
-   
+  
 }

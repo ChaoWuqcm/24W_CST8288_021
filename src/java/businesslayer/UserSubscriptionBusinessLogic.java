@@ -10,7 +10,6 @@ import dataaccesslayer.UserDaoImpl;
 import dataaccesslayer.UserSubscriptionDaoImpl;
 import java.util.List;
 import java.sql.SQLException;
-import model.Author;
 import model.User;
 import model.UserSubscription;
 

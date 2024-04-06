@@ -224,57 +224,6 @@ public class UserDaoImpl {
         }
         return user;
     } 
-    
-   public User getUesrByPass(String userPassword) throws SQLException {
-        Connection con = null;
-        PreparedStatement pstmt = null;
-        ResultSet rs = null;
-        User user = new User();
-        try {
-            DataSource ds = new DataSource();
-            con = ds.createConnection();
-            pstmt = con.prepareStatement(
-                    "SELECT * FROM Users where userPassword =?");
-            pstmt.setString(1, userPassword);
-            rs = pstmt.executeQuery();
-            while (rs.next()) {
-                user.setUserID(rs.getInt("userID"));
-                user.setUserName(rs.getString("userName"));
-                user.setUserEmail(rs.getString("userEmail"));
-                user.setUserPhoneNumber(rs.getString("userPhoneNumber"));
-                user.setUserPassword(rs.getString("userPassword"));
-                user.setUserCity(rs.getString("userCity"));
-                user.setUserType(rs.getString("userType"));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-            throw e;
-
-        } finally {
-            try {
-                if (rs != null) {
-                    rs.close();
-                }
-            } catch (SQLException ex) {
-                System.out.println(ex.getMessage());
-            }
-            try {
-                if (pstmt != null) {
-                    pstmt.close();
-                }
-            } catch (SQLException ex) {
-                System.out.println(ex.getMessage());
-            }
-            try {
-                if (con != null) {
-                    con.close();
-                }
-            } catch (SQLException ex) {
-                System.out.println(ex.getMessage());
-            }
-        }
-        return user;
-    } 
    
     public void addUser(User user) {
         Connection con = null;

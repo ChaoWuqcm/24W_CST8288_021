@@ -8,10 +8,10 @@ CREATE TABLE Users
    userID int NOT NULL AUTO_INCREMENT PRIMARY KEY,
    userName varchar(30) NOT NULL,
    userEmail varchar(30) NOT NULL,
+   userPhoneNumber varchar(30) NOT NULL,
    userPassword varchar(30) NOT NULL,
    userCity varchar(30) NOT NULL,
-   userType varchar(30) NOT NULL,
-   userPhoneNumber varchar(30) NOT NULL
+   userType varchar(30) NOT NULL
 );
 CREATE TABLE Products
 (
@@ -53,13 +53,13 @@ FROM Products as p join users as u on p.userID = u.userID
 WHERE discountAmount IS NOT NULL AND discountAmount > 0;
 
 
-INSERT INTO users (userName,userEmail,userPassword,userCity,userType,userPhoneNumber) VALUES ('admin','admin@admin.com','admin','ottawa','admin','6130000000');
-INSERT INTO users (userName,userEmail,userPassword,userCity,userType,userPhoneNumber) VALUES ('Walmart','Walmart@Walmart.com','walmart','Toronto','retailer','4161234567');
-INSERT INTO users (userName,userEmail,userPassword,userCity,userType,userPhoneNumber) VALUES ('loblaws','loblaws@loblaws.com','loblaws','Ottawa','retailer','6131234567');
-INSERT INTO users (userName,userEmail,userPassword,userCity,userType,userPhoneNumber) VALUES ('foodbanks','foodbanks@foodbanks.com','foodbanks','Ottawa','charitable organization','6134445555');
-INSERT INTO users (userName,userEmail,userPassword,userCity,userType,userPhoneNumber) VALUES ('foodMissions','foodMissions@foodMissions.com','foodMissions','Toronto','charitable organization','4165556666');
-INSERT INTO users (userName,userEmail,userPassword,userCity,userType,userPhoneNumber) VALUES ('Tom','toms@gmail.com','toms','Ottawa','consumer','6132223333');
-INSERT INTO users (userName,userEmail,userPassword,userCity,userType,userPhoneNumber) VALUES ('Mike','mike@gmail.com','mike','Toronto','consumer','4162221111');
+INSERT INTO users (userName,userEmail,userPhoneNumber,userPassword,userCity,userType) VALUES ('admin','admin@admin.com','6130000000','admin','ottawa','admin');
+INSERT INTO users (userName,userEmail,userPhoneNumber,userPassword,userCity,userType) VALUES ('Walmart','Walmart@Walmart.com','4161234567','walmart','Toronto','retailer');
+INSERT INTO users (userName,userEmail,userPhoneNumber,userPassword,userCity,userType) VALUES ('loblaws','loblaws@loblaws.com','6131234567','loblaws','Ottawa','retailer');
+INSERT INTO users (userName,userEmail,userPhoneNumber,userPassword,userCity,userType) VALUES ('foodbanks','foodbanks@foodbanks.com','6134445555','foodbanks','Ottawa','charitable organization');
+INSERT INTO users (userName,userEmail,userPhoneNumber,userPassword,userCity,userType) VALUES ('foodMissions','foodMissions@foodMissions.com','4165556666','foodMissions','Toronto','charitable organization');
+INSERT INTO users (userName,userEmail,userPhoneNumber,userPassword,userCity,userType) VALUES ('Tom','toms@gmail.com','6132223333','toms','Ottawa','consumer');
+INSERT INTO users (userName,userEmail,userPhoneNumber,userPassword,userCity,userType) VALUES ('Mike','mike@gmail.com','4162221111','mike','Toronto','consumer');
 
 INSERT INTO Products (productName, salePrice, inventoryAmount, productType, surplusFlage, userID, expiryDate)
 VALUES
