@@ -15,7 +15,6 @@ import java.sql.PreparedStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import model.User;
 import model.UserSubscription;
 
 public class UserSubscriptionDaoImpl {

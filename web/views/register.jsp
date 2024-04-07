@@ -54,8 +54,7 @@
                         </select>
                      </div>
                     <div>
-                        <input type="submit" style="margin-top: 15px" value="Register"
-                               class="btn btn-primary" id="registerBtn"/>
+                        <input type="submit" style="margin-top: 15px" value="Register" class="btn btn-primary" id="registerBtn"/>
                     </div>
                     <div>
                         <input type="reset" style="margin-top: 15px"  value="Clear" class="btn btn-primary" id="resetBtn"/>

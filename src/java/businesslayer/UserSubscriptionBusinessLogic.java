@@ -5,12 +5,9 @@
  */
 package businesslayer;
 
-import dataaccesslayer.AuthorsDaoImpl;
-import dataaccesslayer.UserDaoImpl;
 import dataaccesslayer.UserSubscriptionDaoImpl;
 import java.util.List;
 import java.sql.SQLException;
-import model.User;
 import model.UserSubscription;
 
 public class UserSubscriptionBusinessLogic {
