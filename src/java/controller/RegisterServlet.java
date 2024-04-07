@@ -11,6 +11,7 @@ import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -51,12 +52,12 @@ public class RegisterServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-            addUser(request, response);
-            response.sendRedirect("/index");
+            addUser(request, response);                        
         } 
         catch (SQLException ex) {
             Logger.getLogger(RegisterServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
+ 
     }
 
     /**
@@ -78,16 +79,51 @@ public class RegisterServlet extends HttpServlet {
         String userPassword = request.getParameter("password");
         String userType = request.getParameter("role");
         String userCity = request.getParameter("usercity");
-        
-        User user = new User();
-        user.setUserName(userName);
-        user.setUserEmail(userEmail);
-        user.setUserPhoneNumber(userPhoneNumber);
-        user.setUserPassword(userPassword);
-        user.setUserType(userType);
-        user.setUserCity(userCity);
-        
-        UB.addUser(user);
-        
-    }
+        if(userName.trim().length()!=0 && userEmail.trim().length()!=0 && userPhoneNumber.trim().length()!=0 && userPassword.trim().length()!=0 
+                && userType.trim().length()!=0 && userCity.trim().length()!=0){
+            User user=UB.getUesrByEmail(userEmail);
+            if(user == null){
+                user=new User();
+                user.setUserName(userName);
+                user.setUserEmail(userEmail);
+                user.setUserPhoneNumber(userPhoneNumber);
+                user.setUserPassword(userPassword);
+                user.setUserType(userType);
+                user.setUserCity(userCity);
+
+                UB.addUser(user);
+                response.sendRedirect("index.jsp");
+            }
+            else{
+                response.setContentType("text/html;charset=UTF-8");
+                try ( PrintWriter out = response.getWriter()) {
+                   out.println("<!DOCTYPE html>");
+                   out.println("<html>");
+                   out.println("<head>");
+                   out.println("<title>User Exists</title>");            
+                   out.println("</head>");
+                   out.println("<body>");
+                   out.println("<h2>The user emali " + request.getParameter("email") + " has already exists</h2>");
+                   out.println("<a href='views/register.jsp'><button>Back, enter again.</button></a>");
+                   out.println("</body>");
+                   out.println("</html>");
+                 }
+            }
+        }
+        else{
+            response.setContentType("text/html;charset=UTF-8");
+            try ( PrintWriter out = response.getWriter()) {
+               out.println("<!DOCTYPE html>");
+               out.println("<html>");
+               out.println("<head>");
+               out.println("<title>Please enter all items.</title>");            
+               out.println("</head>");
+               out.println("<body>");
+               out.println("<h2>The items can not be empty.</h2>");
+               out.println("<a href='views/register.jsp'><button>Back, enter again.</button></a>");
+               out.println("</body>");
+               out.println("</html>");
+             }
+        }
+   }     
 }

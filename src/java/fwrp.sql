@@ -38,7 +38,6 @@ communicationMethod  varchar(30) NOT NULL,
 userEmail  varchar(30),
 userPhoneNumber  varchar(30),
 userCity varchar(30) NOT NULL,
-surplusFlage varchar(4),
 FOREIGN KEY (userID) References Users(userID)
 );
 

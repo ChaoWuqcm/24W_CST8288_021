@@ -70,6 +70,7 @@ public class LoginServlet extends HttpServlet {
         String email=request.getParameter("email");
         String password=request.getParameter("password");
         User user = UB.getUesrByEmail(email);
+    
         //Check user exists
         if (user == null){
             request.setAttribute("msg", "User not found");
@@ -86,6 +87,7 @@ public class LoginServlet extends HttpServlet {
         request.getSession().setAttribute("userId", user.getUserID());
         request.getSession().setAttribute("role", user.getUserType());
         request.getSession().setAttribute("name", user.getUserName());
+        request.getSession().setAttribute("city", user.getUserCity());
         RequestDispatcher dispatcher = request.getRequestDispatcher("views/home.jsp");
         dispatcher.forward(request, response);
           

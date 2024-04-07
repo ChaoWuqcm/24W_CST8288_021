@@ -4,6 +4,8 @@
     Author     : 46297
 --%>
 
+<%@page import="businesslayer.UserBusinessLogic"%>
+<%@page import="model.User"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -16,7 +18,7 @@
         <h1>Sign up</h1>
          <div class="platform_login_border">
              <div class="platform_input">
-                <form action="RegisterServlet" method="post">
+                <form action="../RegisterServlet" method="post">
                     <div>
                         <label for="username">Name</label>
                         <input type="text" name="username" placeholder="Please enter username" id="username" size="40"
@@ -55,9 +57,20 @@
                         <input type="submit" style="margin-top: 15px" value="Register"
                                class="btn btn-primary" id="registerBtn"/>
                     </div>
+                    <div>
+                        <input type="reset" style="margin-top: 15px"  value="Clear" class="btn btn-primary" id="resetBtn"/>
+                    </div>
                  </form>
             </div>
          </div>
        </div>
+<!--       <script>
+           function submitForm(){
+             var userExists= <%= request.getAttribute("userExist")%> ;         
+              if(userExists){
+                alert("The user email has already existed. Please enter new one.");
+                return;
+           }
+       </script>   -->
     </body>
 </html>

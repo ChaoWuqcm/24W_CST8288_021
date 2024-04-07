@@ -37,7 +37,7 @@ public class UserSubscriptionBusinessLogic {
         return userSubscriptionDao.getAllUserSubscriptionByPhone(productType, userCity);
     }
     
-    public UserSubscription getUserSubscription(int userID) throws SQLException {
+    public List<UserSubscription> getUserSubscription(int userID) throws SQLException {
         return userSubscriptionDao.getUserSubscription(userID);
     } 
     
@@ -52,4 +52,9 @@ public class UserSubscriptionBusinessLogic {
     public void deleteUserSubscription(UserSubscription userSubscription){
          userSubscriptionDao.deleteUserSubscription(userSubscription);
     }
+    
+    public void deleteUserSubscriptionByID(int userSubscriptionID){
+        userSubscriptionDao.deleteUserSubscriptionByID(userSubscriptionID);
+    }
+    
 }

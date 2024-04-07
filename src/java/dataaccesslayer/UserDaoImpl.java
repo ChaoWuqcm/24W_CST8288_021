@@ -178,7 +178,7 @@ public class UserDaoImpl {
         Connection con = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
-        User user = new User();
+        User user = null;
         try {
             DataSource ds = new DataSource();
             con = ds.createConnection();
@@ -187,6 +187,7 @@ public class UserDaoImpl {
             pstmt.setString(1, userEmail);
             rs = pstmt.executeQuery();
             while (rs.next()) {
+                user = new User();
                 user.setUserID(rs.getInt("userID"));
                 user.setUserName(rs.getString("userName"));
                 user.setUserEmail(rs.getString("userEmail"));

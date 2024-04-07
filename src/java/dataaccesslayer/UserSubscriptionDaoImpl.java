@@ -241,32 +241,35 @@ public class UserSubscriptionDaoImpl {
         return userSubscriptions;
     }
      
-    public UserSubscription getUserSubscription(int userID) throws SQLException {
+    public List<UserSubscription> getUserSubscription(int userID) throws SQLException {
         Connection con = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
-        UserSubscription userSubscription = new UserSubscription();
+        ArrayList<UserSubscription> userSubscriptions = new ArrayList<UserSubscription>();
+        
         try {
             DataSource ds = new DataSource();
             con = ds.createConnection();
             pstmt = con.prepareStatement(
-                    "SELECT * FROM UserSubscription where userID = ?");
+                    "select * from usersubscription where userID = ?");
             pstmt.setInt(1, userID);
             rs = pstmt.executeQuery();
             while (rs.next()) {
-                 userSubscription.setSubscriptionID(rs.getInt("usersubscriptionID"));
+                UserSubscription userSubscription = new UserSubscription();
+                userSubscription.setSubscriptionID(rs.getInt("subscriptionID"));
                 userSubscription.setUserID(rs.getInt("userID")); 
                 userSubscription.setProductType(rs.getString("productType"));
                 userSubscription.setCommunicationMethod(rs.getString("communicationMethod"));
                 userSubscription.setUserEmail(rs.getString("userEmail"));
                 userSubscription.setUserPhoneNumber(rs.getString("userPhoneNumber"));
                 userSubscription.setUserCity(rs.getString("userCity"));
+                userSubscriptions.add(userSubscription);
             }
         } catch (SQLException e) {
             e.printStackTrace();
             throw e;
 
-        } finally {
+        } finally { 
             try {
                 if (rs != null) {
                     rs.close();
@@ -289,7 +292,7 @@ public class UserSubscriptionDaoImpl {
                 System.out.println(ex.getMessage());
             }
         }
-        return userSubscription;
+        return userSubscriptions;
     } 
     
     public void addUserSubscription(UserSubscription userSubscription) {
@@ -369,7 +372,7 @@ public class UserSubscriptionDaoImpl {
         try {
             DataSource ds = new DataSource();
             con = ds.createConnection();
-            pstmt = con.prepareStatement("Delete form UserSubscription where userID = ?" );             
+            pstmt = con.prepareStatement("Delete form UserSubscription where subscriptionID = ?" );             
             pstmt.setInt(1, userSubscription.getUserID());
             pstmt.executeUpdate();
         } catch (SQLException e) {
@@ -392,4 +395,32 @@ public class UserSubscriptionDaoImpl {
         }
     }
 
+   public void deleteUserSubscriptionByID(int userSubscriptionID) {
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        try {
+            DataSource ds = new DataSource();
+            con = ds.createConnection();
+            pstmt = con.prepareStatement("Delete form UserSubscription where subscriptionID = ?" );             
+            pstmt.setInt(1, userSubscriptionID);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (pstmt != null) {
+                    pstmt.close();
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+            }
+            try {
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+            }
+        }
+    }
 }
