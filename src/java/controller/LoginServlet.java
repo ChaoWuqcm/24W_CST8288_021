@@ -67,9 +67,22 @@ public class LoginServlet extends HttpServlet {
                      
                     HttpSession session = request.getSession();
                     session.setAttribute("username", username);
+                    session.setAttribute("userID",userID);
+                    session.setAttribute("location",location);
                     
-                    RequestDispatcher dispatcher = request.getRequestDispatcher("/DiscountViewServlet");
-                    dispatcher.forward(request, response);
+                    if(user.getUserType().equals("consumer")){
+                        RequestDispatcher dispatcher = request.getRequestDispatcher("/DiscountViewServlet");
+                        dispatcher.forward(request, response);
+                    }
+                    if(user.getUserType().equals("retailer")){
+                        //TODO:
+                        response.sendRedirect("views/retailer.jsp");
+                    }
+                    if(user.getUserType().equals("charitable organization")){
+                        RequestDispatcher dispatcher = request.getRequestDispatcher("/DonationViewServlet");
+                        dispatcher.forward(request, response);
+                    }
+                    
                     
        
                 }

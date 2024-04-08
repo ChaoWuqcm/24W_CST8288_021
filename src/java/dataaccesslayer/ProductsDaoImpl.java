@@ -98,7 +98,7 @@ public class ProductsDaoImpl {
             pstmt.setDouble(2, product.getSalePrice());
             pstmt.setDouble(3, product.getInventoryAmount());
             pstmt.setString(4, product.getProductType());
-            pstmt.setString(5, product.getSurplusFlage());
+            pstmt.setString(5, product.getSurplusFlag());
             pstmt.setInt(6, product.getUserID());
             pstmt.setDate(7,product.getExpiryDate());
             pstmt.setDouble(8, product.getDiscountAmount());
@@ -140,7 +140,7 @@ public class ProductsDaoImpl {
             pstmt.setDouble(2, product.getSalePrice());
             pstmt.setDouble(3, product.getInventoryAmount());
             pstmt.setString(4, product.getProductType());
-            pstmt.setString(5, product.getSurplusFlage());
+            pstmt.setString(5, product.getSurplusFlag());
             pstmt.setDate(6,product.getExpiryDate());           
             pstmt.setDouble(7, product.getDiscountAmount());
             pstmt.setDouble(8, product.getDiscountPrice());

@@ -11,9 +11,7 @@
 <div class="platform_login_wrap">
     
     <h1>Food waste Reduction Platform</h1>
-    <div><a href="../DonationViewServlet">Donation</a></div>
-    <div><a href="../DiscountViewServlet">Discount</a></div>
-
+   
     <div class="platform_login_border">
         <div class="platform_input">
             <form action="../LoginServlet" method="post">

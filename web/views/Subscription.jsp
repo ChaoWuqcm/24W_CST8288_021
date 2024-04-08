@@ -11,9 +11,6 @@
 <%ArrayList<UserSubscription> subscription = (ArrayList<UserSubscription>) request.getAttribute("subscription");%>
 <%ArrayList<ProductTypes> productTypes = (ArrayList<ProductTypes>) request.getAttribute("productTypes");%>
 <%String userID = (String) request.getAttribute("userID");%>
-<% String data = (String) session.getAttribute("data");
-            
-        %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
@@ -22,9 +19,10 @@
         <title>Donation food </title>
     </head>
     <body>
+        <div><a href="SubscriptionMsgsServlet">history</a></div>
         <div>
+            <a href="LogoutServlet">Logout</a>
             <h2>My Subscription</h2>
-            <p><%= data%></p>
 
             <table border="1">
                 <thead>
@@ -37,9 +35,15 @@
                 </thead>
                 <tbody>
                    
-                    
-                        <td><%= userID %></td>
-                        
+                    <%for (UserSubscription s : subscription) {%>
+                    <tr>
+                        <td><%= s.getSubscriptionID() %></td>
+                        <td><%= s.getProductType() %></td>
+                        <td><%= s.getUserCity() %></td>
+                        <td><button onclick="submitForm('<%= s.getSubscriptionID() %>')">Delete</button></td>
+
+                    </tr>
+                    <% }%> 
                 </tbody>
             </table>
         </div>
@@ -48,7 +52,39 @@
         <title>Donation food </title>
     </head>
     <body>
+        <div>
+            <h2>Subscription</h2>
 
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>Product ID</th>
+                        <th>Product Type</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <%for (ProductTypes t : productTypes) {%>
+                    <tr>
+                        <td><%= t.getId() %></td>
+                        <td><%= t.getType() %></td>
+                        <td><button onclick="submitFormType('<%= t.getType() %>')">Add</button></td>
+
+                    </tr>
+                    <% }%>
+                </tbody>
+            </table>
+        </div>    
+        <!-- Hidden form  for pass data to Servlet -->
+    <form id="redirectForm" action="<%= request.getContextPath() %>/SubscriptionDeleteServlet" method="post">
+        <input type="hidden" name="id" id="idInput">
+    </form>
+    <form id="redirectForm1" action="<%= request.getContextPath() %>/SubscriptionAddServlet" method="post">
+        <input type="hidden" name="productType" id="productType">
+        <input type="hidden" name="userID" id="idUser">
+        <input type="hidden" name="subscription" id="sub">
+    </form>
     <script>
         function submitForm(id) {
               

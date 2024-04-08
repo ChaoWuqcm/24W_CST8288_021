@@ -39,7 +39,7 @@ public class SubscriptionMsgsServlet extends HttpServlet {
 
         request.setAttribute("messages", messages);
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/views/SubscriptionMsg.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("views/subscriptionMsg.jsp");
         dispatcher.forward(request, response);
     }
 

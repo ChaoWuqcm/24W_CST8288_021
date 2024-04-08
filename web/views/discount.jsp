@@ -24,6 +24,7 @@ ArrayList<DiscountView> discounts = (ArrayList<DiscountView>) request.getAttribu
     <body>
         <h2>Discount food List</h2>
         <p><%= username%></p>
+        <a href="LogoutServlet">Logout</a>
         
         <div><a href="index.jsp">Back</a></div>
         <div><a href="SubscriptionServlet">Subscription</a></div>

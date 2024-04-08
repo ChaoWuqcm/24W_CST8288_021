@@ -12,7 +12,6 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
     <body>
 
         <h1>Hello, this is the Intro Page</h1>
-        <div><a href="SubscriptionServlet">Subscription</a></div>
         
 
         <div><a href="views/login.jsp">Go to the Login Page</a></div>

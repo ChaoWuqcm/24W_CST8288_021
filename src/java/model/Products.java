@@ -70,7 +70,7 @@ public class Products {
         return productType;
     }
 
-    public String getSurplusFlage() {
+    public String getSurplusFlag() {
         return surplusFlage;
     }
 
