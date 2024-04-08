@@ -14,7 +14,6 @@ It also overrides the toString() method to provide a string representation of th
 @author Dunxing Yu
 */
 public class ProductTypes {
-    private int id;
     private String type;
 
     /**
@@ -30,25 +29,10 @@ public class ProductTypes {
     @param type The name or description of the product type.
     */
     public ProductTypes(int id, String type) {
-    this.id = id;
     this.type = type;
     }
-    /**
 
-    Retrieves the ID of the product type.
-    @return The ID of the product type.
-    */
-    public int getId() {
-    return id;
-    }
-    /**
 
-    Sets the ID of the product type.
-    @param id The new ID of the product type.
-    */
-    public void setId(int id) {
-    this.id = id;
-    }
     /**
 
     Retrieves the type name of the product type.
@@ -72,6 +56,6 @@ public class ProductTypes {
     */
     @Override
     public String toString() {
-    return "ProductTypes{" + "id=" + id + ", type=" + type + '}';
+    return "ProductTypes{type=" + type + '}';
     }
 }

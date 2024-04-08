@@ -14,6 +14,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import model.ProductTypes;
 import model.UserSubscription;
 
@@ -28,10 +29,13 @@ public class SubscriptionServlet extends HttpServlet {
         int userID = 7;
         UserSubscriptionBusinessLogic subscriptionLogic = new UserSubscriptionBusinessLogic();
         ArrayList<UserSubscription> subscription = null;
-        
+        HttpSession session = request.getSession(false);
+        int id = (int) session.getAttribute("userID");
+        String username = (String) session.getAttribute("username");
+
         try {
             // Assuming recipientID 6 is hardcoded, you may need to retrieve it from request parameters
-            subscription =  subscriptionLogic.getUserSubscription(userID);
+            subscription =  subscriptionLogic.getUserSubscription(id);
         } catch (SQLException ex) {
         }
         request.setAttribute("userID", "testid");

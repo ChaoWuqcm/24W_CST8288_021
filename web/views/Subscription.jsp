@@ -10,7 +10,7 @@
 <%@page import="javax.servlet.http.HttpSession" %>
 <%ArrayList<UserSubscription> subscription = (ArrayList<UserSubscription>) request.getAttribute("subscription");%>
 <%ArrayList<ProductTypes> productTypes = (ArrayList<ProductTypes>) request.getAttribute("productTypes");%>
-<%String userID = (String) request.getAttribute("userID");%>
+<% String username = (String) session.getAttribute("username");%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
@@ -23,7 +23,7 @@
         <div>
             <a href="LogoutServlet">Logout</a>
             <h2>My Subscription</h2>
-
+            <p><%= username%></p>
             <table border="1">
                 <thead>
                     <tr>
@@ -58,7 +58,7 @@
             <table border="1">
                 <thead>
                     <tr>
-                        <th>Product ID</th>
+                        
                         <th>Product Type</th>
                         <th>Action</th>
                     </tr>
@@ -67,7 +67,7 @@
 
                     <%for (ProductTypes t : productTypes) {%>
                     <tr>
-                        <td><%= t.getId() %></td>
+                        
                         <td><%= t.getType() %></td>
                         <td><button onclick="submitFormType('<%= t.getType() %>')">Add</button></td>
 
@@ -100,7 +100,7 @@
             alert("You Add Subscription Type is " + type + "!");
             // set form data
             document.getElementById("productType").value = type; 
-            document.getElementById("idUser").value = <%= userID %>;
+           
             // submit form
             document.getElementById("redirectForm1").submit();  
         }       

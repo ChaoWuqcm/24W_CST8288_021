@@ -36,20 +36,7 @@ public class ProductTypesBusinessLogic {
     public ArrayList<ProductTypes> getAllProductTypes() throws SQLException {
     return productTypesDao.getAllProductTypes();
     }
-    /**
+   
 
-    Adds a new product type to the database.
-    @param type The ProductTypes object representing the new product type to be added.
-    */
-    public void addProductType(ProductTypes type) {
-    productTypesDao.addProductType(type);
-    }
-    /**
-
-    Deletes a product type from the database based on its ID.
-    @param id The ID of the product type to be deleted.
-    */
-    public void deleteProductTypes(int id) {
-    productTypesDao.deleteProductTypes(id);
-    }
+    
 }

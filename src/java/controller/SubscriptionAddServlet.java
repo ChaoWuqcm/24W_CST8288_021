@@ -57,14 +57,17 @@ public class SubscriptionAddServlet extends HttpServlet {
          UserSubscriptionBusinessLogic subscriptionLogic = new UserSubscriptionBusinessLogic();
          ArrayList<UserSubscription> subscription = null;
          try {
-            int userID = Integer.parseInt(request.getParameter("userID"));
+            //int userID = Integer.parseInt(request.getParameter("userID"));
+            HttpSession session = request.getSession(false);
+            int id = (int) session.getAttribute("userID");
+
             String productType = request.getParameter("productType");
             
             //check subscription exist.
             boolean isExist = false;
             try {
                 // Assuming recipientID 6 is hardcoded, you may need to retrieve it from request parameters
-                subscription =  subscriptionLogic.getUserSubscription(userID);
+                subscription =  subscriptionLogic.getUserSubscription(id);
                 for (UserSubscription s : subscription) {
                     if (s.getProductType().equals(productType)) {
                        isExist = true;
@@ -83,11 +86,11 @@ public class SubscriptionAddServlet extends HttpServlet {
                 UserBusinessLogic userLogic = new UserBusinessLogic();
                 ArrayList<User> users = userLogic.getAllUsers();
                 for (User u : users) {
-                    if (u.getUserID() == userID) {
+                    if (u.getUserID() == id) {
                        city = u.getUserCity();
                     }
                 }
-                subs.setUserID(userID);
+                subs.setUserID(id);
                 subs.setProductType(productType);
                 subs.setUserCity(city);
                 usmbl.addUserSubscription(subs);
