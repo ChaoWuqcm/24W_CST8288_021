@@ -101,7 +101,7 @@ public class RegisterServlet extends HttpServlet {
                    out.println("<title>User Exists</title>");            
                    out.println("</head>");
                    out.println("<body>");
-                   out.println("<h2>The user emali " + request.getParameter("email") + " has already exists</h2>");
+                   out.println("<h2>The user emali " + request.getParameter("email") + " has already existed</h2>");
                    out.println("<a href='views/register.jsp'><button>Back, enter again.</button></a>");
                    out.println("</body>");
                    out.println("</html>");
