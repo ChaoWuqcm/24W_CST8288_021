@@ -70,6 +70,7 @@ public class AuthorsDaoImpl {
         }
         return authors;
     }
+    
 
     public void addAuthor(Author author) {
         Connection con = null;

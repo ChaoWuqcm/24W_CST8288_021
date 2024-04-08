@@ -15,12 +15,20 @@ import java.sql.SQLException;
 public class DataSource {
 
     private Connection connection = null;
-    private String url = "jdbc:mysql://localhost:3306/books?useSSL=false&allowPublicKeyRetrieval=true";
+    private String url = "jdbc:mysql://localhost:3306/fwrp?useSSL=false&allowPublicKeyRetrieval=true";
     private String username = "root";
     private String password = "algonquin";
 
     public DataSource() {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+            // Handle the exception as needed
+        }
+        
     }
+    
 
     /*
  * Only use one connection for this application, prevent memory leaks.

@@ -6,8 +6,11 @@ package controller;
  */
 import businesslayer.AuthorsBusinessLogic;
 import businesslayer.UserBusinessLogic;
+import dataaccesslayer.DiscountDaoImpl;
 import java.io.IOException;
+import java.sql.Array;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
@@ -18,9 +21,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Author;
+import model.DiscountView;
 import model.User;
 
-public class AuthorsServlet extends HttpServlet {
+public class PurchaseServlet extends HttpServlet {
 
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -46,10 +50,19 @@ public class AuthorsServlet extends HttpServlet {
 //
 //        RequestDispatcher dispatcher = request.getRequestDispatcher("views/authors.jsp");
 //        dispatcher.forward(request, response);
-        request.setAttribute("msg", "Password is incorrect");
+        //request.setAttribute("msg", "Password is incorrect");
         UserBusinessLogic UB=new UserBusinessLogic();
-          List<User>  users= null;
-          
+        DiscountDaoImpl discount = new DiscountDaoImpl();
+         List<User>  users= null;
+         ArrayList<DiscountView> discountarray = null;
+         
+        try {
+            discountarray = discount.getAllDiscountProducts();
+
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(PurchaseServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
            try {
              users = UB.getAllUsers();
         } catch (SQLException ex) {
@@ -57,11 +70,12 @@ public class AuthorsServlet extends HttpServlet {
         }
         
         
-     
-            request.setAttribute("users", users);
+            request.setAttribute("dis", discountarray);
+
+            //request.setAttribute("users", users);
 
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("views/authors.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("views/purchase.jsp");
         dispatcher.forward(request, response);
 
     }
@@ -76,17 +90,27 @@ public class AuthorsServlet extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //UserBusinessLogic UB=new UserBusinessLogic();
+        DiscountDaoImpl discount = new DiscountDaoImpl();
+          //List<User>  users= null;
+          ArrayList<DiscountView> discountarray =null;
+          String a ="";
         try {
-            //        addAuthor(request, response);
-//
-//        doGet(request, response);
+            discountarray = discount.getAllDiscountProducts();
+            a= discountarray.get(0).getProductName();
 
-        if(checkUser(request, response)){
-            doGet(request, response);
-        }
+            
         } catch (SQLException ex) {
-            Logger.getLogger(AuthorsServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PurchaseServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+            request.setAttribute("dis", discountarray);
+
+            //request.setAttribute("users", users);
+
+
+        RequestDispatcher dispatcher = request.getRequestDispatcher("views/purchase.jsp");
+        dispatcher.forward(request, response);
           
           
     }
