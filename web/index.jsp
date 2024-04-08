@@ -8,6 +8,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
         <title>Food Waste Reduction Platform</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="./css/platform_login.css" rel="stylesheet" type="text/css" />
     </head>
     <body>
     <div class="platform_login_wrap">
@@ -26,7 +27,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
                     </div>
                 
                     <div>
-                        <input type="submit" style="margin-top: 15px"  value="Sign in" class="btn btn-primary" id="loginBtn"/>
+                        <input type="submit" style="margin-top: 15px"  value="Login" class="btn btn-primary" id="loginBtn"/>
                     </div>
                     <div>
                         <input type="button" style="margin-top: 15px"  value="Sign up" class="btn btn-primary" id="registerBtn"/>
