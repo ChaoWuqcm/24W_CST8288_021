@@ -47,13 +47,6 @@ CREATE TABLE UserSubscription
     FOREIGN KEY (userID) References Users(userID)
 );
 
--- CREATE TABLE ProductTypes
-CREATE TABLE ProductTypes
-(
-    ID int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    productType varchar(30) NOT NULL
-);
-
 -- CREATE TABLE SubscriptionMsg
 CREATE TABLE SubscriptionMsg
 (
@@ -76,6 +69,10 @@ CREATE VIEW DiscountView AS
 SELECT p.userID as uID,productID, productName, discountAmount, discountPrice, u.userName as DiscountCompany,expiryDate
 FROM Products as p join users as u on p.userID = u.userID
 WHERE discountAmount IS NOT NULL AND discountAmount > 0;
+
+--CREATE VIEW ProductTypes
+CREATE VIEW ProductTypes AS 
+SELECT DISTINCT productType FROM Products;
 
 -- INSERT users TO users
 INSERT INTO users (userName,userEmail,userPassword,userCity,userType,userPhone) VALUES ('admin','admin@admin.com','admin','ottawa','admin','6130000000');
@@ -108,15 +105,6 @@ VALUES
     (6, 'bread','Ottawa'),
     (7, 'bread','Toronto');
 
--- INSERT records to ProductTypes
-INSERT INTO ProductTypes(productType)
-VALUES
-    ('meat'),
-    ('vegi'),
-    ('dairy'),
-    ('friut'),
-    ('bread');
-
 -- INSERT records TO subscriptionMsg
 INSERT INTO subscriptionMsg (senderName,recipientID,content,dateSent)
 VALUES
@@ -137,5 +125,4 @@ select * from DiscountView;
 select * from usersubscription where userID = 6;
 select * from  SubscriptionMsg ;
 select * from  SubscriptionMsg;
-select * from  ProductTypes;
-
+SELECT * FROM ProductTypes;

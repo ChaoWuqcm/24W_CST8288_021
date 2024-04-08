@@ -56,7 +56,6 @@
             <table border="1">
                 <thead>
                     <tr>
-                        <th>Product ID</th>
                         <th>Product Type</th>
                         <th>Action</th>
                     </tr>
@@ -65,7 +64,6 @@
 
                     <%for (ProductTypes t : productTypes) {%>
                     <tr>
-                        <td><%= t.getId() %></td>
                         <td><%= t.getType() %></td>
                         <td><button onclick="submitFormType('<%= t.getType() %>')">Add</button></td>
 

@@ -34,22 +34,6 @@ public class ProductTypesBusinessLogic {
     @throws SQLException If an SQL exception occurs while accessing the database.
     */
     public ArrayList<ProductTypes> getAllProductTypes() throws SQLException {
-    return productTypesDao.getAllProductTypes();
-    }
-    /**
-
-    Adds a new product type to the database.
-    @param type The ProductTypes object representing the new product type to be added.
-    */
-    public void addProductType(ProductTypes type) {
-    productTypesDao.addProductType(type);
-    }
-    /**
-
-    Deletes a product type from the database based on its ID.
-    @param id The ID of the product type to be deleted.
-    */
-    public void deleteProductTypes(int id) {
-    productTypesDao.deleteProductTypes(id);
+        return productTypesDao.getAllProductTypes();
     }
 }
