@@ -64,7 +64,7 @@ public class LoginServlet extends HttpServlet {
                     String location = user.getUserCity();
                     
                     
-                    
+                     
                     HttpSession session = request.getSession();
                     session.setAttribute("username", username);
                     
