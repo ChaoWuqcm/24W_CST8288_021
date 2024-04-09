@@ -13,40 +13,49 @@ ArrayList<DonationView> donations = (ArrayList<DonationView>) request.getAttribu
 <!DOCTYPE html>
 
 <html>
+    <jsp:include page="header.jsp">
+    <jsp:param name="pageTitle" value="Inventory Manager" />
+    </jsp:include>
     <head>
         <title>Donation food </title>
     </head>
     <body>
+    <jsp:include page="topbar.jsp"/>    
+    <jsp:include page="sidebar.jsp" />
+        
+        
         <h2>Donation food List</h2>
-         <div><a href="index.jsp">Back</a></div>
+        <div class="container clearfix">
+            <div class="main-wrap">
+            <table class="search-tab" border="1">
+                <thead>
+                    <tr>
+                        <th>Company ID</th>
+                        <th>Donation Company</th>
+                        <th>Product ID</th>
+                        <th>Product Name</th>
+                        <th>Donation Amount</th>
+                        <th>Accept Amount</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
 
-        <table border="1">
-            <thead>
-                <tr>
-                    <th>Company ID</th>
-                    <th>Donation Company</th>
-                    <th>Product ID</th>
-                    <th>Product Name</th>
-                    <th>Donation Amount</th>
-                    <th>Accept Amount</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                
-                <%for (DonationView donation : donations) {%>
-                <tr>
-                    <td><%= donation.getUserID()%></td>
-                    <td><%= donation.getDonationCompany() %></td>
-                    <td><%= donation.getProductID()%></td>
-                    <td><%= donation.getProductName() %></td>
-                    <td><%= donation.getDonationAmount() %></td>
-                    <td><input type="number" id="quantity_<%= donation.getProductID() %>" min="0"  step="0.001"></td>
-                    <td><button onclick="submitForm('<%= donation.getProductID() %>', '<%= donation.getDonationAmount() %>')">Accept</button></td>
-                </tr>
-                <% }%>
-            </tbody>
-        </table>
+                    <%for (DonationView donation : donations) {%>
+                    <tr>
+                        <td><%= donation.getUserID()%></td>
+                        <td><%= donation.getDonationCompany() %></td>
+                        <td><%= donation.getProductID()%></td>
+                        <td><%= donation.getProductName() %></td>
+                        <td><%= donation.getDonationAmount() %></td>
+                        <td><input type="number" id="quantity_<%= donation.getProductID() %>" min="0"  step="0.001"></td>
+                        <td><button onclick="submitForm('<%= donation.getProductID() %>', '<%= donation.getDonationAmount() %>')">Accept</button></td>
+                    </tr>
+                    <% }%>
+                </tbody>
+            </table>
+            </div>
+        </div>
 
         <!-- Hidden form  for pass data to Servlet -->
     <form id="redirectForm" action="<%= request.getContextPath() %>/DonationViewUpdate" method="post">

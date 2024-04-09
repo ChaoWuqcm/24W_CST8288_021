@@ -13,7 +13,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
 
         <h1>Hello, this is the Intro Page</h1>
         
-        <div><a href="DiscountViewServlet">Go to the Login Page</a></div>
+        <div><a href="views/userInfo.jsp">info</a></div>
         <div><a href="views/login.jsp">Go to the Login Page</a></div>
     </body>
 </html>

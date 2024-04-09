@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
@@ -84,7 +85,7 @@ public class SubscriptionAddServlet extends HttpServlet {
                                                 
                 //get user city;
                 UserBusinessLogic userLogic = new UserBusinessLogic();
-                ArrayList<User> users = userLogic.getAllUsers();
+                List<User> users = userLogic.getAllUsers();
                 for (User u : users) {
                     if (u.getUserID() == id) {
                        city = u.getUserCity();

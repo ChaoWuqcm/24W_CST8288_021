@@ -15,16 +15,25 @@
 <!DOCTYPE html>
 
 <html>
+    <jsp:include page="header.jsp">
+    <jsp:param name="pageTitle" value="Inventory Manager" />
+    </jsp:include>
     <head>
         <title>Donation food </title>
     </head>
     <body>
-        <div><a href="SubscriptionMsgsServlet">history</a></div>
-        <div>
-            <a href="LogoutServlet">Logout</a>
-            <h2>My Subscription</h2>
-            <p><%= username%></p>
-            <table border="1">
+    <jsp:include page="topbar.jsp"/>
+     <jsp:include page="sidebar.jsp" />
+    <div><a href="SubscriptionMsgsServlet">Subscription Details</a></div>
+        
+           
+        
+    <div class="container clearfix">
+    
+    <!--/sidebar-->
+        <div class="main-wrap">
+            <h2><%= username %>'s Subscription</h2>
+            <table class="search-tab" border="1">
                 <thead>
                     <tr>
                         <th>Subscription ID</th>
@@ -47,35 +56,36 @@
                 </tbody>
             </table>
         </div>
-        <div> 
-            <head>
-        <title>Donation food </title>
-    </head>
-    <body>
+            
         <div>
-            <h2>Subscription</h2>
+            <h2>Subscribe By Category</h2>
+            <div class="container clearfix">
 
-            <table border="1">
-                <thead>
-                    <tr>
-                        
-                        <th>Product Type</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
+        <!--/sidebar-->
+                <div >
+                    <table class="search-tab"border="1">
+                        <thead>
+                            <tr>
 
-                    <%for (ProductTypes t : productTypes) {%>
-                    <tr>
-                        
-                        <td><%= t.getType() %></td>
-                        <td><button onclick="submitFormType('<%= t.getType() %>')">Add</button></td>
+                                <th>Product Type</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
 
-                    </tr>
-                    <% }%>
-                </tbody>
-            </table>
-        </div>    
+                            <%for (ProductTypes t : productTypes) {%>
+                            <tr>
+
+                                <td><%= t.getType() %></td>
+                                <td><button onclick="submitFormType('<%= t.getType() %>')">Add</button></td>
+
+                            </tr>
+                            <% }%>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>    </div>
         <!-- Hidden form  for pass data to Servlet -->
     <form id="redirectForm" action="<%= request.getContextPath() %>/SubscriptionDeleteServlet" method="post">
         <input type="hidden" name="id" id="idInput">

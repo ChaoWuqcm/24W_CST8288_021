@@ -1,13 +1,15 @@
-/* File: UserBusinessLogic.java
- * Date: 2024
+/* File: AuthorsBusinessLogic.java
+ * AuthorDTO: Stanley Pieda
+ * Date: 2015
  * Description: Demonstration of DAO Design Pattern with Servlet website
  */
 package businesslayer;
 
+import dataaccesslayer.AuthorsDaoImpl;
 import dataaccesslayer.UserDaoImpl;
 import java.util.List;
 import java.sql.SQLException;
-import java.util.ArrayList;
+import model.Author;
 import model.User;
 
 public class UserBusinessLogic {
@@ -18,7 +20,7 @@ public class UserBusinessLogic {
         userDao = new UserDaoImpl();
     }
 
-    public ArrayList<User> getAllUsers() throws SQLException {
+    public List<User> getAllUsers() throws SQLException {
         return userDao.getAllUesrs();
     }
 
@@ -48,7 +50,7 @@ public class UserBusinessLogic {
         userDao.updateUserPass(user);
     }
     
-    public void deleteUser(User user){
-        userDao.deleteUser(user);
+    public void deleteUser(String email){
+        userDao.deleteUser(email);
     }
 }

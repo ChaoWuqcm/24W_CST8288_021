@@ -49,7 +49,22 @@
         <servlet-name>SubscriptionAddServlet</servlet-name>
         <servlet-class>controller.SubscriptionAddServlet</servlet-class>
     </servlet>
-    
+    <servlet>
+        <servlet-name>RegisterServlet</servlet-name>
+        <servlet-class>controller.RegisterServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UserInfoServlet</servlet-name>
+        <servlet-class>controller.UserInfoServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdminDeleteServlet</servlet-name>
+        <servlet-class>controller.AdminDeleteServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdminServlet</servlet-name>
+        <servlet-class>controller.AdminServlet</servlet-class>
+    </servlet>    
     <!---->
     <servlet-mapping>
         <servlet-name>controller.AuthorsServlet</servlet-name>
@@ -95,7 +110,22 @@
         <servlet-name>SubscriptionAddServlet</servlet-name>
         <url-pattern>/SubscriptionAddServlet</url-pattern>
     </servlet-mapping>
-
+    <servlet-mapping>
+        <servlet-name>RegisterServlet</servlet-name>
+        <url-pattern>/RegisterServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UserInfoServlet</servlet-name>
+        <url-pattern>/UserInfoServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminServlet</servlet-name>
+        <url-pattern>/AdminServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminDeleteServlet</servlet-name>
+        <url-pattern>/AdminDeleteServlet</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30

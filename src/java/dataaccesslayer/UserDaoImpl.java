@@ -22,7 +22,7 @@ public class UserDaoImpl {
     public UserDaoImpl() {
     }
     
-      public ArrayList<User> getAllUesrs() throws SQLException {
+      public List<User> getAllUesrs() throws SQLException {
         Connection con = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -39,7 +39,7 @@ public class UserDaoImpl {
                 user.setUserID(rs.getInt("userID"));
                 user.setUserName(rs.getString("userName"));
                 user.setUserEmail(rs.getString("userEmail"));
-                //user.setUserPhoneNumber(rs.getString("userPhoneNumber"));
+                user.setUserPhoneNumber(rs.getString("userPhoneNumber"));
                 user.setUserPassword(rs.getString("userPassword"));
                 user.setUserCity(rs.getString("userCity"));
                 user.setUserType(rs.getString("userType"));
@@ -178,7 +178,7 @@ public class UserDaoImpl {
         Connection con = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
-        User user = new User();
+        User user = null;
         try {
             DataSource ds = new DataSource();
             con = ds.createConnection();
@@ -187,6 +187,7 @@ public class UserDaoImpl {
             pstmt.setString(1, userEmail);
             rs = pstmt.executeQuery();
             while (rs.next()) {
+                user = new User();
                 user.setUserID(rs.getInt("userID"));
                 user.setUserName(rs.getString("userName"));
                 user.setUserEmail(rs.getString("userEmail"));
@@ -326,14 +327,14 @@ public class UserDaoImpl {
         }
     }
     
-    public void deleteUser(User user) {
+    public void deleteUser(String email) {
         Connection con = null;
         PreparedStatement pstmt = null;
         try {
             DataSource ds = new DataSource();
             con = ds.createConnection();
             pstmt = con.prepareStatement("Delete form Users where userEmail = ?" );             
-            pstmt.setString(1, user.getUserEmail());
+            pstmt.setString(1, email);
             pstmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -354,5 +355,4 @@ public class UserDaoImpl {
             }
         }
     }
-
 }

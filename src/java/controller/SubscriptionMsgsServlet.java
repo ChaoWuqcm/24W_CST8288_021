@@ -13,6 +13,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import model.SubscriptionMsg;
 
 /**
@@ -26,10 +27,11 @@ public class SubscriptionMsgsServlet extends HttpServlet {
 
         SubscriptionMsgBusinessLogic subscriptionMsgLogic = new SubscriptionMsgBusinessLogic();
         ArrayList<SubscriptionMsg> messages = null;
-
+        HttpSession session = request.getSession(false);
+        int id = (int) session.getAttribute("userID");
         try {
             // Assuming recipientID 6 is hardcoded, you may need to retrieve it from request parameters
-            messages =  subscriptionMsgLogic.getAllSubscriptionMsgs(7);
+            messages =  subscriptionMsgLogic.getAllSubscriptionMsgs(id);
         } catch (SQLException ex) {
             // Print the stack trace for debugging purposes
             // Log the exception properly, consider using a logging framework like Log4j

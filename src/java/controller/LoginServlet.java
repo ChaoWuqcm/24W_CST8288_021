@@ -51,8 +51,7 @@ public class LoginServlet extends HttpServlet {
             String email = request.getParameter("email");
             String password = request.getParameter("password");
             UserBusinessLogic userdao = new UserBusinessLogic();
-            
-            PrintWriter out = response.getWriter();
+           
             
             try {
                 User user = userdao.getUesrByEmail(email);
@@ -62,24 +61,35 @@ public class LoginServlet extends HttpServlet {
                     int userID = user.getUserID();
                     String username = user.getUserName();
                     String location = user.getUserCity();
-                    
+                    String userEmail = user.getUserEmail();
+                    String userType = user.getUserType();
                     
                      
                     HttpSession session = request.getSession();
                     session.setAttribute("username", username);
                     session.setAttribute("userID",userID);
+                    session.setAttribute("userEmail",userEmail);
                     session.setAttribute("location",location);
+                    session.setAttribute("userType",userType);
                     
                     if(user.getUserType().equals("consumer")){
+                        session.setAttribute("home","DiscountViewServlet");
                         RequestDispatcher dispatcher = request.getRequestDispatcher("/DiscountViewServlet");
                         dispatcher.forward(request, response);
                     }
                     if(user.getUserType().equals("retailer")){
+                        session.setAttribute("home","retailer.jsp");
                         //TODO:
                         response.sendRedirect("views/retailer.jsp");
                     }
                     if(user.getUserType().equals("charitable organization")){
+                        session.setAttribute("home","DonationViewServlet");
                         RequestDispatcher dispatcher = request.getRequestDispatcher("/DonationViewServlet");
+                        dispatcher.forward(request, response);
+                    }
+                    if(user.getUserType().equals("admin")){
+                        session.setAttribute("home","AdminServlet");
+                        RequestDispatcher dispatcher = request.getRequestDispatcher("/AdminServlet");
                         dispatcher.forward(request, response);
                     }
                     
@@ -88,9 +98,19 @@ public class LoginServlet extends HttpServlet {
                 }
 
                 else{
-                    response.sendRedirect("views/login.jsp");
-                    //RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
-                    //dispatcher.forward(request, response);
+                    response.setContentType("text/html;charset=UTF-8");
+                    try ( PrintWriter out = response.getWriter()) {
+                       out.println("<!DOCTYPE html>");
+                       out.println("<html>");
+                       out.println("<head>");
+                       out.println("<title>Username or password wrong!</title>");            
+                       out.println("</head>");
+                       out.println("<body>");
+                       out.println("<h2>Username or password wrong!</h2>");
+                       out.println("<a href='views/login.jsp'><button>Back, enter again.</button></a>");
+                       out.println("</body>");
+                       out.println("</html>");
+                     }
                 }
 
             } catch (SQLException ex) {

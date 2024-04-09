@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <title> Food waste Reduction Platform </title>
-    <link href="${pageContext.request.contextPath}/static/css/platform_login.css" rel="stylesheet" type="text/css" />
+    <link href="../css/platform_login.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
 <div class="platform_login_wrap">
@@ -15,23 +15,25 @@
     <div class="platform_login_border">
         <div class="platform_input">
             <form action="../LoginServlet" method="post">
-                <input type="hidden" size="85" name="method" class="common-text" value="login">
-                <ul class="platform_items">
-                    <li>
-                        <label for="email">Email：</label>
-                        <input type="text" name="email" placeholder="Please input email" id="email" size="40" class="platform_input_style" />
-                    </li>
-                    <li>
-                        <label for="password">Password：</label>
-                        <input type="password" name="password" placeholder="Please input password" id="password" size="40" class="platform_input_style" />
-                    </li>
-                    <li>
-                        <input type="submit" style="margin-top: 15px" tabindex="3" value="Sign in" class="btn btn-primary" id="loginBtn"/>
-                    </li>
-                    <li>
-                        <input type="button" style="margin-top: 15px" tabindex="3" value="Sign up" class="btn btn-primary" id="registerBtn"/>
-                    </li>
-                </ul>
+                 <div>
+                        <label for="email">Email</label>
+                        <input type="text" name="email" placeholder="Please enter email" id="email" size="40" class="platform_input_style" />
+                    </div>
+                  
+                    <div>
+                        <label for="password">Password</label>
+                        <input type="password" name="password" placeholder="Please enter password" id="password" size="40" class="platform_input_style" />
+                    </div>
+                
+                    <div>
+                        <input type="submit" style="margin-top: 15px"  value="Login" class="btn btn-primary" id="loginBtn"/>
+                    </div>
+                    <div>
+                        <input type="button" style="margin-top: 15px"  value="Sign up" class="btn btn-primary" id="registerBtn"/>
+                    </div>
+                     <div>
+                        <input type="reset" style="margin-top: 15px"  value="Clear" class="btn btn-primary" id="resetBtn"/>
+                    </div>
             </form>
         </div>
     </div>
@@ -54,11 +56,10 @@
             form.submit(); // submit
         }
     });
-
-    // add event listener，load register page
     document.querySelector('#registerBtn').addEventListener('click', function() {
-        window.location.href='${pageContext.request.contextPath}/register';
-    });
+    window.location.href="register.jsp";});
+    // add event listener，load register page
+    
 
     var msg = '${msg}';
     console.log(msg);

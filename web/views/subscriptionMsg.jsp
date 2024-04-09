@@ -13,13 +13,24 @@
 <!DOCTYPE html>
 
 <html>
+    <jsp:include page="header.jsp">
+    <jsp:param name="pageTitle" value="Inventory Manager" />
+    </jsp:include>
     <head>
         <title>Donation food </title>
     </head>
+    
     <body>
+    <jsp:include page="topbar.jsp"/>
+        
+    <jsp:include page="sidebar.jsp" />       
+        
+<div class="container clearfix">
+    
+    <!--/sidebar-->
+    <div class="main-wrap">
         <h2>Subscription Messages</h2>
-
-        <table border="1">
+        <table class="search-tab" border="1">
             <thead>
                 <tr>
                     <th>Message ID</th>
@@ -44,7 +55,7 @@
                 </tr>
                 <% }%>
             </tbody>
-        </table>
+        </table></div></div>
 
         <!-- Hidden form  for pass data to Servlet -->
     <form id="redirectForm" action="<%= request.getContextPath() %>/SubscriptionMsgsDeleteServlet" method="post">

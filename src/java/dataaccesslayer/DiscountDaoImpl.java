@@ -41,7 +41,7 @@ public class DiscountDaoImpl {
                 product.setDiscountAmount(rs.getDouble("discountAmount"));
                 product.setDiscountPrice(rs.getDouble("discountPrice"));
                 product.setUserID(rs.getInt("uID"));
-                product.setDicountCompany("DiscountCompany");
+                product.setDicountCompany(rs.getString("DiscountCompany"));
                 discounts.add(product);
             }
         } catch (SQLException e) {

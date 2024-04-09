@@ -2,6 +2,9 @@
 <%@page import="model.Products"%>
 <%@page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
+    <jsp:include page="header.jsp">
+    <jsp:param name="pageTitle" value="Inventory Manager" />
+    </jsp:include>
 <head>
     <title>Retailer Inventory Management</title>
     <script type="text/javascript">
@@ -19,6 +22,7 @@
     </script>
 </head>
 <body>
+       <jsp:include page="topbar.jsp"/>
 <h2>Inventory Management</h2>
 
 <table border="1">

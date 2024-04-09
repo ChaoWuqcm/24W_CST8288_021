@@ -26,7 +26,6 @@ public class SubscriptionServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        int userID = 7;
         UserSubscriptionBusinessLogic subscriptionLogic = new UserSubscriptionBusinessLogic();
         ArrayList<UserSubscription> subscription = null;
         HttpSession session = request.getSession(false);
@@ -38,7 +37,6 @@ public class SubscriptionServlet extends HttpServlet {
             subscription =  subscriptionLogic.getUserSubscription(id);
         } catch (SQLException ex) {
         }
-        request.setAttribute("userID", "testid");
         request.setAttribute("subscription", subscription);
         ProductTypesBusinessLogic productTypeLogic = new ProductTypesBusinessLogic();
         ArrayList<ProductTypes>  productTypes = null;
