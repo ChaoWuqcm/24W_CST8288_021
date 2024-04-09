@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="4.0" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd">
+    <welcome-file-list>
+        <welcome-file>
+            index.jsp
+        </welcome-file>
+    </welcome-file-list>
+    <servlet>
+        <servlet-name>controller.AuthorsServlet</servlet-name>
+        <servlet-class>controller.AuthorsServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DonationViewServlet</servlet-name>
+        <servlet-class>controller.DonationViewServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DonationViewUpdate</servlet-name>
+        <servlet-class>controller.DonationViewUpdate</servlet-class>
+    </servlet>
+        <servlet>
+        <servlet-name>controller.DiscountViewServlet</servlet-name>
+        <servlet-class>controller.DiscountViewServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DiscountViewUpdate</servlet-name>
+        <servlet-class>controller.DiscountViewUpdate</servlet-class>
+    </servlet>
+        <servlet>
+        <servlet-name>controller.LoginServlet</servlet-name>
+        <servlet-class>controller.LoginServlet</servlet-class>
+    </servlet>
+<servlet>
+        <servlet-name>SubscriptionMsgsServlet</servlet-name>
+        <servlet-class>controller.SubscriptionMsgsServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SubscriptionMsgsDeleteServlet</servlet-name>
+        <servlet-class>controller.SubscriptionMsgsDeleteServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SubscriptionServlet</servlet-name>
+        <servlet-class>controller.SubscriptionServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SubscriptionDeleteServlet</servlet-name>
+        <servlet-class>controller.SubscriptionDeleteServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SubscriptionAddServlet</servlet-name>
+        <servlet-class>controller.SubscriptionAddServlet</servlet-class>
+    </servlet>
+    
+    <!---->
+    <servlet-mapping>
+        <servlet-name>controller.AuthorsServlet</servlet-name>
+        <url-pattern>/AuthorsServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DonationViewServlet</servlet-name>
+        <url-pattern>/DonationViewServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DonationViewUpdate</servlet-name>
+        <url-pattern>/DonationViewUpdate</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>controller.DiscountViewServlet</servlet-name>
+        <url-pattern>/DiscountViewServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DiscountViewUpdate</servlet-name>
+        <url-pattern>/DiscountViewUpdate</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>controller.LoginServlet</servlet-name>
+        <url-pattern>/LoginServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SubscriptionMsgsServlet</servlet-name>
+        <url-pattern>/SubscriptionMsgsServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SubscriptionMsgsDeleteServlet</servlet-name>
+        <url-pattern>/SubscriptionMsgsDeleteServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SubscriptionServlet</servlet-name>
+        <url-pattern>/SubscriptionServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SubscriptionDeleteServlet</servlet-name>
+        <url-pattern>/SubscriptionDeleteServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SubscriptionAddServlet</servlet-name>
+        <url-pattern>/SubscriptionAddServlet</url-pattern>
+    </servlet-mapping>
+  <servlet>
+    <servlet-name>SurplusProductsServlet</servlet-name>
+    <servlet-class>controller.SurplusProductsServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+    <servlet-name>SurplusProductsServlet</servlet-name>
+    <url-pattern>/surplus</url-pattern>
+</servlet-mapping>
+
+
+
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+</web-app>
