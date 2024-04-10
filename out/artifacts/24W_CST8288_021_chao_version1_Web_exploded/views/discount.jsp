@@ -18,18 +18,28 @@ ArrayList<DiscountView> discounts = (ArrayList<DiscountView>) request.getAttribu
 <!DOCTYPE html>
 
 <html>
+<jsp:include page="header.jsp">
+    <jsp:param name="pageTitle" value="Retailer Inventory Management" />
+</jsp:include>
     <head>
         <title>Discount food </title>
     </head>
+
     <body>
+    <jsp:include page="topbar.jsp"/>
+        
         <h2>Discount food List</h2>
         <p><%= username%></p>
         <a href="LogoutServlet">Logout</a>
         
-        <div><a href="index.jsp">Back</a></div>
+        
         <div><a href="SubscriptionServlet">Subscription</a></div>
     
-        <table border="1">
+       <div class="container clearfix">
+    
+    <!--/sidebar-->
+    <div class="main-wrap">
+        <table class="search-tab" border="1">
             <thead>
                 <tr>
                     <th>Company ID</th>
@@ -59,7 +69,7 @@ ArrayList<DiscountView> discounts = (ArrayList<DiscountView>) request.getAttribu
                 </tr>
                 <% }%>
             </tbody>
-        </table>
+        </table></div></div>
 
         <!-- Hidden form  for pass data to Servlet -->
     <form id="redirectForm" action="<%= request.getContextPath() %>/DiscountViewUpdate" method="post">

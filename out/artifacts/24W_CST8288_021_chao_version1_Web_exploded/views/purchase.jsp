@@ -14,10 +14,14 @@
 --%>
 
 <html>
+<jsp:include page="header.jsp">
+    <jsp:param name="pageTitle" value="Retailer Inventory Management" />
+</jsp:include>
     <head>
         <title>Author List</title>
     </head>
     <body>
+    <jsp:include page="topbar.jsp"/>
         <h2>Purchase List</h2>
        
         <div class="crumb-wrap">

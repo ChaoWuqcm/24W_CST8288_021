@@ -18,6 +18,8 @@
 </head>
 <body>
     <h2>Surplus Products</h2>
+    
+    <button onclick="sendNotification()">Send Notification</button>
 
 
     <table border="1">
@@ -62,6 +64,7 @@
             <tr>
                 <td colspan="10">No surplus products found.</td>
             </tr>
+              
             <% } %>
         </tbody>
     </table>
@@ -82,7 +85,7 @@
         });
 
         const today = new Date();
-        const daysToAdd = 7; // 加几天
+        const daysToAdd = 7; 
 
         document.querySelectorAll('.time-cell').forEach(cell => {
             const cellDate = new Date(cell.textContent);
@@ -92,6 +95,10 @@
                 cell.classList.add('red-background');
             }
         });
+         function sendNotification() {
+            // Your code to send notification goes here
+            alert("Notification sent successfully!");
+        }
     </script>
 </body>
 </html>

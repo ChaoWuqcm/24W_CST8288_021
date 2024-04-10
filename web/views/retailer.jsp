@@ -2,6 +2,9 @@
 <%@page import="model.Products"%>
 <%@page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
+<jsp:include page="header.jsp">
+    <jsp:param name="pageTitle" value="Retailer Inventory Management" />
+</jsp:include>
 <head>
     <title>Retailer Inventory Management</title>
     <script type="text/javascript">
@@ -26,6 +29,9 @@
     </style>
 </head>
 <body>
+<jsp:include page="topbar.jsp"/>
+
+
 <h2>Inventory Management</h2>
 
 
@@ -106,7 +112,7 @@
 
 </form>
     <!--<a href="/surplusProducts.jsp">Go to Surplus Products</a><br>-->
-    <a href="/index.jsp">Log Out</a>
+<!--    <a href="/LogoutServlet">Log Out</a>-->
 <script>
     function addDays(date, days) {
         const copy = new Date(Number(date));

@@ -15,10 +15,14 @@
 <!DOCTYPE html>
 
 <html>
+<jsp:include page="header.jsp">
+    <jsp:param name="pageTitle" value="Retailer Inventory Management" />
+</jsp:include>
     <head>
         <title>Donation food </title>
     </head>
     <body>
+    <jsp:include page="topbar.jsp"/>
         <h2>Subscription Messages</h2>
 
         <table border="1">

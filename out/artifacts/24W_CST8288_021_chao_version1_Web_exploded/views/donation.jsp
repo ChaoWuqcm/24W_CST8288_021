@@ -13,10 +13,14 @@ ArrayList<DonationView> donations = (ArrayList<DonationView>) request.getAttribu
 <!DOCTYPE html>
 
 <html>
+<jsp:include page="header.jsp">
+    <jsp:param name="pageTitle" value="Retailer Inventory Management" />
+</jsp:include>
     <head>
         <title>Donation food </title>
     </head>
     <body>
+    <jsp:include page="topbar.jsp"/>
         <h2>Donation food List</h2>
          <div><a href="index.jsp">Back</a></div>
 

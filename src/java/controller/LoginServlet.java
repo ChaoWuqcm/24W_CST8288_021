@@ -8,6 +8,7 @@ import businesslayer.AuthorsBusinessLogic;
 import businesslayer.DiscountViewBusinessLogic;
 import businesslayer.DonationViewBusinessLogic;
 import businesslayer.UserBusinessLogic;
+import dataaccesslayer.SurplusProductIdentifier;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -21,9 +22,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import dataaccesslayer.SurplusProductIdentifier;
-import model.*;
+import model.Author;
+import model.DiscountView;
+import model.DonationView;
+import model.Products;
+import model.User;
 
 /**
  *
@@ -43,59 +46,82 @@ public class LoginServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
- // Get parameters
-        
+        // Get parameters
+
         //String password = request.getParameter("password");BusinessLogic = new UserBusinessLogic();
-       
-            String email = request.getParameter("email");
-            String password = request.getParameter("password");
-            UserBusinessLogic userdao = new UserBusinessLogic();
-            
-            PrintWriter out = response.getWriter();
-            
-            try {
-                User user = userdao.getUesrByEmail(email);
-                if(user!=null && user.getUserPassword().equals(password)){
-                    //out.println(user.getUserEmail());
-                    //response.sendRedirect("views/discount.jsp");
-                    int userID = user.getUserID();
-                    String username = user.getUserName();
-                    String location = user.getUserCity();
-                    
-                    
-                     
-                    HttpSession session = request.getSession();
-                    session.setAttribute("username", username);
-                    session.setAttribute("userID",userID);
-                    session.setAttribute("location",location);
 
-                    if(user.getUserType().equals("consumer")){
-                        RequestDispatcher dispatcher = request.getRequestDispatcher("/DiscountViewServlet");
-                        dispatcher.forward(request, response);
-                    }
-                    if(user.getUserType().equals("retailer")){
-                        SurplusProductIdentifier surplusProductIdentifier = new SurplusProductIdentifier();
-                        List<Products> surplusProducts = surplusProductIdentifier.filterProductsByUserId(userID);
-                        request.setAttribute("products", surplusProducts);
-                        RequestDispatcher dispatcher = request.getRequestDispatcher("views/retailer.jsp");
-                        dispatcher.forward(request, response);
-                    }
-                    if(user.getUserType().equals("charitable organization")){
-                        RequestDispatcher dispatcher = request.getRequestDispatcher("/DonationViewServlet");
-                        dispatcher.forward(request, response);
-                    }
+        String email = request.getParameter("email");
+        String password = request.getParameter("password");
+        UserBusinessLogic userdao = new UserBusinessLogic();
+
+
+        try {
+            User user = userdao.getUesrByEmail(email);
+            if(user!=null && user.getUserPassword().equals(password)){
+                //out.println(user.getUserEmail());
+                //response.sendRedirect("views/discount.jsp");
+                int userID = user.getUserID();
+                String username = user.getUserName();
+                String location = user.getUserCity();
+                String userEmail = user.getUserEmail();
+                String userType = user.getUserType();
+
+
+                HttpSession session = request.getSession();
+                session.setAttribute("username", username);
+                session.setAttribute("userID",userID);
+                session.setAttribute("userEmail",userEmail);
+                session.setAttribute("location",location);
+                session.setAttribute("userType",userType);
+
+                if(user.getUserType().equals("consumer")){
+                    session.setAttribute("home","DiscountViewServlet");
+                    RequestDispatcher dispatcher = request.getRequestDispatcher("/DiscountViewServlet");
+                    dispatcher.forward(request, response);
+                }
+                if(user.getUserType().equals("retailer")){
+                    SurplusProductIdentifier surplusProductIdentifier = new SurplusProductIdentifier();
+                    List<Products> surplusProducts = surplusProductIdentifier.filterProductsByUserId(userID);
+                    request.setAttribute("products", surplusProducts);
+                    session.setAttribute("home","views/retailer.jsp");
+                    RequestDispatcher dispatcher = request.getRequestDispatcher("views/retailer.jsp");
+                    dispatcher.forward(request, response);
+                }
+                if(user.getUserType().equals("charitable organization")){
+                    session.setAttribute("home","DonationViewServlet");
+                    RequestDispatcher dispatcher = request.getRequestDispatcher("/DonationViewServlet");
+                    dispatcher.forward(request, response);
+                }
+                if(user.getUserType().equals("admin")){
+                    session.setAttribute("home","AdminServlet");
+                    RequestDispatcher dispatcher = request.getRequestDispatcher("/AdminServlet");
+                    dispatcher.forward(request, response);
                 }
 
-                else{
-                    response.sendRedirect("views/login.jsp");
-                    //RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
-                    //dispatcher.forward(request, response);
-                }
 
-            } catch (SQLException ex) {
-                Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
+
             }
-             
+
+            else{
+                response.setContentType("text/html;charset=UTF-8");
+                try ( PrintWriter out = response.getWriter()) {
+                    out.println("<!DOCTYPE html>");
+                    out.println("<html>");
+                    out.println("<head>");
+                    out.println("<title>Username or password wrong!</title>");
+                    out.println("</head>");
+                    out.println("<body>");
+                    out.println("<h2>Username or password wrong!</h2>");
+                    out.println("<a href='views/login.jsp'><button>Back, enter again.</button></a>");
+                    out.println("</body>");
+                    out.println("</html>");
+                }
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
 
     }
 

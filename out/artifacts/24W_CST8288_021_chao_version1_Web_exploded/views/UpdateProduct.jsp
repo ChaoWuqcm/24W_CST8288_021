@@ -5,10 +5,14 @@
     Products product = (Products) request.getAttribute("productsById");
 %>
 <html>
+<jsp:include page="header.jsp">
+    <jsp:param name="pageTitle" value="Retailer Inventory Management" />
+</jsp:include>
 <head>
      <link href="${pageContext.request.contextPath}/css/main.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
+<jsp:include page="topbar.jsp"/>
 <h3>update Product</h3>
 <form name="productForm" action="${pageContext.request.contextPath}/UpdateProductSubmitServlet" onsubmit="return validateForm()" method="POST">
     <!-- Assuming the userID is stored in the session -->
@@ -32,7 +36,7 @@
     <input type="submit" value="update Product">
 
 </form>
-    <a href="/surplusProducts.jsp">Go to Surplus Products</a><br>
+    <!--<a href="/surplusProducts.jsp">Go to Surplus Products</a><br>-->
     <a href="/index.jsp">Log Out</a>
 </body>
 </html>

@@ -26,6 +26,7 @@ public class ProductManagementServlet extends HttpServlet {
             HttpSession session=request.getSession();
             int userID =(int)session.getAttribute("userID");
             String location =(String)session.getAttribute("location");
+
             String productName = request.getParameter("productName");
             double salePrice = Double.parseDouble(request.getParameter("salePrice"));
             double discountPrice = Double.parseDouble(request.getParameter("discountPrice"));
