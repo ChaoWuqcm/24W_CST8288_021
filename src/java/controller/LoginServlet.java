@@ -80,11 +80,8 @@ public class LoginServlet extends HttpServlet {
                     dispatcher.forward(request, response);
                 }
                 if(user.getUserType().equals("retailer")){
-                    SurplusProductIdentifier surplusProductIdentifier = new SurplusProductIdentifier();
-                    List<Products> surplusProducts = surplusProductIdentifier.filterProductsByUserId(userID);
-                    request.setAttribute("products", surplusProducts);
-                    session.setAttribute("home","views/retailer.jsp");
-                    RequestDispatcher dispatcher = request.getRequestDispatcher("views/retailer.jsp");
+                    session.setAttribute("home","RetailerViewServlet");
+                    RequestDispatcher dispatcher = request.getRequestDispatcher("RetailerViewServlet");
                     dispatcher.forward(request, response);
                 }
                 if(user.getUserType().equals("charitable organization")){

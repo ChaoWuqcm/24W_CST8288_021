@@ -9,11 +9,11 @@
     <jsp:param name="pageTitle" value="Retailer Inventory Management" />
 </jsp:include>
 <head>
-     <link href="${pageContext.request.contextPath}/css/main.css" rel="stylesheet" type="text/css" />
+
 </head>
 <body>
 <jsp:include page="topbar.jsp"/>
-<h3>update Product</h3>
+<h3>Update Product</h3>
 <form name="productForm" action="${pageContext.request.contextPath}/UpdateProductSubmitServlet" onsubmit="return validateForm()" method="POST">
     <!-- Assuming the userID is stored in the session -->
      <input type="hidden" name="productID" value="<%=product.getProductID() %>">

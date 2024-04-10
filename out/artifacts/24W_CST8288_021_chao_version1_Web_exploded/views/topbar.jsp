@@ -1,8 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<% String username = (String) session.getAttribute("username");
-   String home = (String) session.getAttribute("home");
-        %>
+<% String username = (String) session.getAttribute("username");%>
+<% String home = (String) session.getAttribute("home");%>
 
 <div class="topbar-wrap white">
     <div class="topbar-inner clearfix">
@@ -12,7 +11,7 @@
             </h1>
             <ul class="navbar-list clearfix">
                 <li>
-                    <a class="on" href="${home}">Home</a>
+                    <a class="on" href="<%=home%>">Home</a>
                 </li>
             </ul>
         </div>
